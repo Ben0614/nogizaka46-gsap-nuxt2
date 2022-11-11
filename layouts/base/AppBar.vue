@@ -1,7 +1,7 @@
 <template>
   <div ref="header" class="header">
     <v-container>
-      <v-img width="200px"  :src="require('@/assets/images//nogizaka46/Nogizaka46_logo_long.png')" contain></v-img>
+      <v-img :style="{cursor:'pointer'}" width="200px" :src="require('@/assets/images//nogizaka46/Nogizaka46_logo_long.png')" contain @click="goToHome"></v-img>
     </v-container>
   </div>
 </template>
@@ -37,7 +37,11 @@ export default {
     })
   },
 
-  methods: {},
+  methods: {
+    goToHome() {
+      this.$router.push({ name: 'index' })
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>

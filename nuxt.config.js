@@ -7,8 +7,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s -NuxtJs & Vuetify Ecommerce',
-    title: 'Bonik-Nuxt',
+    titleTemplate: '%s -Gsap',
+    title: 'Nogizaka46',
     htmlAttrs: {
       lang: 'en',
     },
@@ -20,7 +20,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/x-icon', href: '/nogizaka46.ico' },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;900&amp;display=swap',

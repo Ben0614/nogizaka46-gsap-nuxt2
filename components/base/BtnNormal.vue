@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'BtnHover',
+  name: 'BtnNormal',
 
   props: {
     content: {

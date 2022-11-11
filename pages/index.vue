@@ -1,73 +1,76 @@
 <template>
-  <div class="">
+  <div :style="{overflow: 'hidden'}">
     <!-- section-1  -->
-    <div :style="{padding:'400px 50px 50px'}" class="white mb-60 d-flex justify-space-between align-end">
-      <h1 class="text-h1 font-weight-bold">
+    <div :style="{padding:isMobile ? '80px 50px 50px' : '400px 50px 50px'}" class="white mb-60 d-flex justify-space-between" :class="isMobile ? 'flex-column align-start' : 'align-end'">
+      <h1 class="font-weight-bold" :class="isMobile ? 'text-h3 mb-3' : 'text-h1'">
         乃木坂46は
         <br>
         未来です
       </h1>
-      <h4 class="text-h4 font-weight-bold">僕は信じます</h4>
+      <h4 class="font-weight-bold" :class="isMobile ? 'text-h6' : 'text-h4'">僕は信じます</h4>
     </div>
 
     <!-- video 伸縮 -->
     <div :style="{position:'relative',margin:'0 0 300px'}" class="d-flex justify-center">
       <div ref="videoWrap" :style="{position:'relative',width:'95%',borderRadius:'10px',overflow:'hidden'}">
         <!-- 影片區域 -->
-        <video :style="{width:'100%',height:'100%'}" autoplay muted loop src="@/assets/video/22nd.mp4">
-        </video>
+        <video :style="{width:'100%',height:isMobile ? '100vh' : '100%',objectFit:'cover'}" autoplay muted loop src="@/assets/video/22nd.mp4"></video>
         <!-- 黑色遮罩 -->
         <div class="video-bg"></div>
         <!-- 文字內容區域 -->
-        <div :style="{position:'absolute',top:'15%',left:'20%',zIndex:'2',width:'800px',maxWidth:'100%'}" class="white--text mx-auto">
-          <h2 class="wow fadeInUp text-h3 mb-3">
+        <div :style="{position:'absolute',top:isMobile ? '0' : '15%',left:isMobile ? '0' : '20%',zIndex:'2',width:'800px',maxWidth:'100%'}" class="white--text mx-auto pa-10">
+          <h2 class="mb-3" :class="isMobile ? 'text-h5' : 'text-h3'">
             乃木坂46
           </h2>
-          <h4 class="wow fadeInUp text-h4 mb-15">のぎざか フォーティーシックス</h4>
-          <p class="wow fadeInUp text-h6">日本の女性アイドルグループである。秋元康のプロデュースにより、2011年8月21日に結成した</p>
-          <p class="wow fadeInUp text-h6">2011年にソニー・ミュージックエンタテインメント (SME) と秋元康の合同プロデュースによる新たな女性アイドルグループが企画され、乃木坂46の結成に至った。</p>
-          <p class="wow fadeInUp text-h6 mb-10">
+          <h4 class="mb-15" :class="isMobile ? '' : 'text-h4'">のぎざか フォーティーシックス</h4>
+          <p :class="isMobile ? '' : 'text-h6'">日本の女性アイドルグループである。秋元康のプロデュースにより、2011年8月21日に結成した</p>
+          <p :class="isMobile ? '' : 'text-h6'">2011年にソニー・ミュージックエンタテインメント (SME) と秋元康の合同プロデュースによる新たな女性アイドルグループが企画され、乃木坂46の結成に至った。</p>
+          <p class="mb-10" :class="isMobile ? '' : 'text-h6'">
             乃木坂46はAKB48グループに所属せず、AKB48の公式ライバルとして存在する[7]。AKB48グループが専用劇場を持つのに対し、乃木坂46は専用劇場を持たない[7]。AKB48グループが選抜総選挙を実施するのに対し、乃木坂46は舞台『16人のプリンシパル』における配役決定で投票を実施するという差別化を図っている[8]。このような差別化は乃木坂46の1stシングル『ぐるぐるカーテン』のミュージック・ビデオ (MV) における私立女子校の風景から提示され始めた[9]。
           </p>
-          <BtnHover :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
+          <BtnNormal :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
         </div>
       </div>
       <!-- play按鈕 -->
-      <PlayCircle :dialog-visible="dialogVideo" :youtube-path="'https://www.youtube.com/embed/QaGgbf_VNR4'" @openVideo="openVideo" @dialogClose="closeDialog" />
+      <div class="playCirclePosition">
+        <PlayCircle :dialog-visible="dialogVideo" :youtube-path="'https://www.youtube.com/embed/QaGgbf_VNR4'" @openVideo="openVideo" @dialogClose="closeDialog" />
+      </div>
     </div>
 
     <!-- 圓球背景 -->
-    <div ref=circleWrap :style="{margin:'0 0 100px',position:'relative'}" class="d-flex justify-center pb-15">
+    <div ref="circleWrap" :style="{margin:'0 0 100px',position:'relative'}" class="d-flex justify-center pb-15">
       <!-- 圓球 -->
-      <div ref="greyCircle" :style="{position:'absolute',top:'0',zIndex:'0',background:'gray',width:'0',height:'0',borderRadius:'50%'}"></div>
+      <div ref="greyCircle" :style="{position:'absolute',top:'0',zIndex:'1',background:'gray',width:'0',height:'0',borderRadius:'50%'}"></div>
       <!-- 圖片外層 -->
-      <div :style="{position:'relative',margin:'400px 0 60px',width:'80%'}" class="d-flex justify-center wow fadeIn">
+      <div :style="{position:'relative',margin:'400px 0 60px',width:isMobile ? '100%' : '80%'}" class="d-flex justify-center">
         <!-- 圖片區域 -->
         <v-img :style="{position:'relative',zIndex:'1'}" :src="require('@/assets/images/nogizaka46/nogizaka46.jpeg')">
           <!-- 圖片遮罩 -->
           <div class="img-bg"></div>
           <!-- 文字內容區域 -->
           <div :style="{position:'relative',zIndex:'1',width:'800px',maxWidth:'100%'}" class="white--text mx-auto py-15 px-3">
-            <h2 class="wow fadeInUp text-h3 mb-15">
+            <h2 class="text-h3 mb-15">
               乃木坂46
             </h2>
-            <p class="wow fadeInUp text-h6">日本大型女子偶像團體，成立於2011年8月21日；其出道時定位為另一女子偶像團體AKB48的「官方對手」（公式ライバル），但有獨立的幕後團隊，行銷策略及團體風格也與AKB48系列團體不同，惟總製作人同樣是秋元康。目前共有43名成員，其中隊長為秋元真夏、副隊長為梅澤美波。</p>
-            <p class="wow fadeInUp text-h6">乃木坂46最初是做為「AKB48官方對手」而成立的女子團體。與AKB48及其姊妹團體（如SKE48等）不同，舉行公演時並不擁有專屬表演場地（如AKB48劇場），但操作方式較為專業。根據秋元康所說，團體名稱中的「46」象徵「就算人數比AKB48少，也具有不遜於AKB48的幹勁」。</p>
-            <p class="wow fadeInUp text-h6 mb-10">
+            <p class="text-h6">日本大型女子偶像團體，成立於2011年8月21日；其出道時定位為另一女子偶像團體AKB48的「官方對手」（公式ライバル），但有獨立的幕後團隊，行銷策略及團體風格也與AKB48系列團體不同，惟總製作人同樣是秋元康。目前共有43名成員，其中隊長為秋元真夏、副隊長為梅澤美波。</p>
+            <p class="text-h6">乃木坂46最初是做為「AKB48官方對手」而成立的女子團體。與AKB48及其姊妹團體（如SKE48等）不同，舉行公演時並不擁有專屬表演場地（如AKB48劇場），但操作方式較為專業。根據秋元康所說，團體名稱中的「46」象徵「就算人數比AKB48少，也具有不遜於AKB48的幹勁」。</p>
+            <p class="text-h6 mb-10">
               乃木坂46全體成員所屬的經紀公司為「乃木坂46合同會社」（乃木坂46LLC）。附屬於乃木坂46合同會社的「乃木坂46營運委員會」（乃木坂46運営委員会）負責整個團體的營運工作。
             </p>
-            <BtnHover :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
+            <BtnNormal :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
           </div>
         </v-img>
         <!-- play按鈕 -->
-        <PlayCircle :dialog-visible="dialogVideo2" :youtube-path="'https://www.youtube.com/embed/rUTlSUQCMuo'" @dialogClose="closeDialog" @openVideo="openVideo2" />
+        <div class="playCirclePosition">
+          <PlayCircle :dialog-visible="dialogVideo2" :youtube-path="'https://www.youtube.com/embed/rUTlSUQCMuo'" @dialogClose="closeDialog" @openVideo="openVideo2" />
+        </div>
       </div>
 
     </div>
 
     <!-- card -->
     <v-container class="mb-10">
-      <div class="d-flex justify-space-between">
+      <div class="d-flex justify-space-between" :class="isMobile ? 'flex-column' : ''">
         <div v-for="(card,index) in cardData" :key="index" class="myCard rounded" :class="`card${index}`" @mouseenter="showCard(`card${index}`)" @mouseleave="closeCard(`card${index}`)" @click="openPage(card.link)">
           <v-img class="cardImg" width="100%" height="100%" :src="card.img"></v-img>
           <div :style="{height:'100%'}" class="cardText">
@@ -85,11 +88,11 @@
     </v-container>
 
     <!-- join -->
-    <div ref="joinArea" :style="{backgroundColor:'#000',cursor: 'pointer',padding:'100px 0'}" class="joinArea white--text mb-15">
+    <div ref="joinArea" :style="{backgroundColor:'#000',cursor: 'pointer',padding:'100px 0'}" class="joinArea white--text mb-15" @click="goToPage('detail')">
       <p class="text-center mb-5">オーディション</p>
       <h1 class="text-h1 text-center mb-10">Join Us!</h1>
       <div class="d-flex justify-center">
-        <BtnHover ref="joinBtn" class="joinBtn" :content="'募集一覧 / 応募'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#9e3eb2'" :circle-color="'#fff'" :time="'0.3'" />
+        <BtnNormal ref="joinBtn" class="joinBtn" :content="'募集一覧 / 応募'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#9e3eb2'" :circle-color="'#fff'" :time="'0.3'" />
       </div>
     </div>
 
@@ -101,12 +104,12 @@ import { WOW } from 'wowjs'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // import GSDevTools from "gsap/GSDevTools"
-import BtnHover from '@/components/base/BtnHover'
+import BtnNormal from '@/components/base/BtnNormal'
 import PlayCircle from '@/components/PlayCircle'
 export default {
   name: 'Home',
   components: {
-    BtnHover,
+    BtnNormal,
     PlayCircle,
   },
   data() {
@@ -136,20 +139,31 @@ export default {
   head: {
     title: 'Home',
   },
-  computed: {},
+
+  computed: {
+    isMobile() {
+      return ['xs', 'sm'].includes(this.$vuetify.breakpoint.name)
+    },
+  },
+  destroyed(){
+  
+  },
+
   mounted() {
     gsap.registerPlugin(ScrollTrigger)
 
     // video和circle
     // 如果需要設斷點 就用matchMedia
+    // 不用設斷點 就直接寫gsap.to即可
+    // markers 開啟的狀態下 跳到別頁畫面可能會有點偏移 F5重整或關閉markers即可
     ScrollTrigger.matchMedia({
-      // 跟設定css 一樣  如果畫面不小於 768px 執行
-      '(min-width: 768px)': () => {
+      // 跟設定css一樣  如果畫面不小於 600px 執行
+      '(min-width: 0px)': () => {
         // video
         gsap.to(this.$refs.videoWrap, {
           // x: 300,
-          duration: 1,
           // rotation: 360,
+          duration: 1,
           width: '100%',
           borderRadius: '0px',
           scrollTrigger: {
@@ -163,13 +177,11 @@ export default {
           },
         })
         // circle
-        const t = gsap.timeline({
-          duration: 1,
-        })
-        t.to(this.$refs.greyCircle, {
-          width: '100%',
-          height: '100%',
-          scale: 2,
+        // 這個會造成爆版 而且還會有bug 必須要在這個頁面最外層放overflow hidden解決
+        gsap.to(this.$refs.greyCircle, {
+          width: '200px',
+          height: '200px',
+          scale: 50,
           scrollTrigger: {
             trigger: this.$refs.greyCircle,
             start: 'top +=50%', // (物件開始位置, 卷軸開始位置) top center bottom px
@@ -178,7 +190,8 @@ export default {
             scrub: true,
             markers: true,
           },
-        }).to(this.$refs.circleWrap, {
+        })
+        gsap.to(this.$refs.circleWrap, {
           overflow: 'hidden',
           scrollTrigger: {
             trigger: this.$refs.circleWrap,
@@ -294,6 +307,7 @@ export default {
     },
     // 觸碰到card
     showCard(cardClass) {
+      if (this.isMobile) return
       // 獲取card和底下的子元素
       const card = document.querySelector(`.${cardClass}`)
       const cardImg = document.querySelector(`.${cardClass} > .cardImg`)
@@ -330,6 +344,7 @@ export default {
     },
     // 從card移開
     closeCard(cardClass) {
+      if (this.isMobile) return
       // 獲取card和底下的子元素
       const card = document.querySelector(`.${cardClass}`)
       const cardImg = document.querySelector(`.${cardClass} > .cardImg`)
@@ -367,6 +382,9 @@ export default {
       a.target = '_blank'
       a.click()
     },
+    goToPage(pageName) {
+      this.$router.push({ name: pageName })
+    },
     // videoControl() {
     //   console.log('元素離頂部高度', this.$refs.videoWrap.offsetTop)
     //   console.log('元素本身高度', this.$refs.videoWrap.offsetHeight)
@@ -377,7 +395,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 .video-bg,
 .img-bg {
   position: absolute;
@@ -397,11 +414,19 @@ export default {
   transition: 0.3s;
   cursor: pointer;
 
+  @media screen and (max-width: '960px') {
+    width: 100%;
+    margin: 0 0 10px;
+  }
+
   .cardImg {
     position: absolute;
     opacity: 0.3;
     transition: 0.3s;
     z-index: 0;
+    @media screen and (max-width: '960px') {
+      opacity: 1;
+    }
   }
   .cardText {
     position: relative;
@@ -417,6 +442,9 @@ export default {
       color: #fff;
       opacity: 0;
       transition: 0.3s;
+      @media screen and (max-width: '960px') {
+        opacity: 1;
+      }
     }
   }
   .linkIcon {
@@ -431,6 +459,15 @@ export default {
     border-radius: 50%;
     background-color: rgba(236, 236, 236, 1);
     transition: 0.3s;
+  }
+}
+.playCirclePosition {
+  position: absolute;
+  z-index: 1;
+  bottom: -80px;
+  right: 100px;
+  @media screen and (max-width: '960px') {
+    right: 20px;
   }
 }
 </style>

@@ -10,11 +10,11 @@
     </div>
     <v-dialog v-model="_dialogVisible" fullscreen persistent>
       <v-card width="100%" height="100%" :style="{background:'rgba(0,0,0,0.7)'}" class="d-flex justify-center align-center">
-        <div class="d-flex">
-          <iframe width="1000" height="563" :src="youtubePath" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <v-btn icon class="ml-15" @click="dialogClose">
+        <div class="d-flex" :style="{width:isMobile ? '100%' : '50%',height:'50%'}">
+          <iframe width="100%" height="100%" :src="youtubePath" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <v-btn icon class="ml-15" :class="isMobile ? 'closeBtn' : ''" @click="dialogClose">
             <v-icon size="60px" color="#fff">mdi-close</v-icon>
-            <span class="white--text ml-3">close</span>
+            <span class="white--text">close</span>
           </v-btn>
         </div>
       </v-card>
@@ -48,6 +48,9 @@ export default {
         this.dialogClose()
       },
     },
+    isMobile() {
+      return ['xs', 'sm'].includes(this.$vuetify.breakpoint.name)
+    },
   },
  
   methods: {
@@ -64,10 +67,10 @@ export default {
 
 <style lang="scss">
 .playCircleWrap {
-  position: absolute;
+  /* position: absolute;
   z-index: 2;
   bottom: -80px;
-  right: 100px;
+  right: 100px; */
   background: transparent;
   cursor: pointer;
 
@@ -95,4 +98,10 @@ export default {
     transition: 0.3s;
   }
 }
+
+.closeBtn{
+    position: absolute;
+    top:30px;
+    right:30px
+  }
 </style>

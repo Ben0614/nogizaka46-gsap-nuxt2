@@ -1,5 +1,5 @@
 <template>
-  <v-main class="main-content bg-body" :style="{marginTop:'80px'}">
+  <v-main class="main-content bg-body" :style="{marginTop:$route.path === '/detail' ? '0px' : '80px'}">
     <v-fade-transition mode="out-in">
       <Nuxt />
     </v-fade-transition>

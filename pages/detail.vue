@@ -199,6 +199,7 @@ export default {
     const cardBtns = gsap.utils.toArray('.processCard .btnCircle')
     const cardBtnIcons = gsap.utils.toArray('.processCard .btnCircle .v-icon')
     cards.forEach((card, index) => {
+      // 點擊就打開側邊欄 並指定tab
       card.addEventListener('click', () => {
         this.tab = index
         this.drawer = true

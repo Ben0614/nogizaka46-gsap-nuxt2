@@ -14,21 +14,22 @@
     <div :style="{position:'relative',margin:'0 0 300px'}" class="d-flex justify-center">
       <div ref="videoWrap" :style="{position:'relative',width:'95%',borderRadius:'10px',overflow:'hidden'}">
         <!-- 影片區域 -->
+        <!-- objectFit:'cover' 對圖片進行剪切，保留原始比例 -->
         <video :style="{width:'100%',height:isMobile ? '100vh' : '100%',objectFit:'cover'}" autoplay muted loop src="@/assets/video/22nd.mp4"></video>
         <!-- 黑色遮罩 -->
         <div class="video-bg"></div>
         <!-- 文字內容區域 -->
         <div :style="{position:'absolute',top:isMobile ? '0' : '15%',left:isMobile ? '0' : '20%',zIndex:'2',width:'800px',maxWidth:'100%'}" class="white--text mx-auto pa-10">
-          <h2 class="mb-3" :class="isMobile ? 'text-h5' : 'text-h3'">
+          <h2 class="wow fadeInUp mb-3" :class="isMobile ? 'text-h5' : 'text-h3'">
             乃木坂46
           </h2>
-          <h4 class="mb-15" :class="isMobile ? '' : 'text-h4'">のぎざか フォーティーシックス</h4>
-          <p :class="isMobile ? '' : 'text-h6'">日本の女性アイドルグループである。秋元康のプロデュースにより、2011年8月21日に結成した</p>
-          <p :class="isMobile ? '' : 'text-h6'">2011年にソニー・ミュージックエンタテインメント (SME) と秋元康の合同プロデュースによる新たな女性アイドルグループが企画され、乃木坂46の結成に至った。</p>
-          <p class="mb-10" :class="isMobile ? '' : 'text-h6'">
+          <h4 class="wow fadeInUp mb-15" :class="isMobile ? '' : 'text-h4'">のぎざか フォーティーシックス</h4>
+          <p class="wow fadeInUp" :class="isMobile ? '' : 'text-h6'">日本の女性アイドルグループである。秋元康のプロデュースにより、2011年8月21日に結成した</p>
+          <p class="wow fadeInUp" :class="isMobile ? '' : 'text-h6'">2011年にソニー・ミュージックエンタテインメント (SME) と秋元康の合同プロデュースによる新たな女性アイドルグループが企画され、乃木坂46の結成に至った。</p>
+          <p class="wow fadeInUp mb-10" :class="isMobile ? '' : 'text-h6'">
             乃木坂46はAKB48グループに所属せず、AKB48の公式ライバルとして存在する[7]。AKB48グループが専用劇場を持つのに対し、乃木坂46は専用劇場を持たない[7]。AKB48グループが選抜総選挙を実施するのに対し、乃木坂46は舞台『16人のプリンシパル』における配役決定で投票を実施するという差別化を図っている[8]。このような差別化は乃木坂46の1stシングル『ぐるぐるカーテン』のミュージック・ビデオ (MV) における私立女子校の風景から提示され始めた[9]。
           </p>
-          <BtnNormal :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
+          <BtnNormal class="wow fadeInUp" :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
         </div>
       </div>
       <!-- play按鈕 -->
@@ -44,20 +45,20 @@
       <!-- 圖片外層 -->
       <div :style="{position:'relative',margin:'400px 0 60px',width:isMobile ? '100%' : '80%'}" class="d-flex justify-center">
         <!-- 圖片區域 -->
-        <v-img :style="{position:'relative',zIndex:'1'}" :src="require('@/assets/images/nogizaka46/nogizaka46.jpeg')">
+        <v-img :style="{position:'relative',zIndex:'1'}" :src="require('@/assets/images/nogizaka46/nogizaka46.jpeg')" class="wow fadeIn" data-wow-offset="700">
           <!-- 圖片遮罩 -->
           <div class="img-bg"></div>
           <!-- 文字內容區域 -->
           <div :style="{position:'relative',zIndex:'1',width:'800px',maxWidth:'100%'}" class="white--text mx-auto py-15 px-3">
-            <h2 class="text-h3 mb-15">
+            <h2 class="wow fadeInUp text-h3 mb-15">
               乃木坂46
             </h2>
-            <p class="text-h6">日本大型女子偶像團體，成立於2011年8月21日；其出道時定位為另一女子偶像團體AKB48的「官方對手」（公式ライバル），但有獨立的幕後團隊，行銷策略及團體風格也與AKB48系列團體不同，惟總製作人同樣是秋元康。目前共有43名成員，其中隊長為秋元真夏、副隊長為梅澤美波。</p>
-            <p class="text-h6">乃木坂46最初是做為「AKB48官方對手」而成立的女子團體。與AKB48及其姊妹團體（如SKE48等）不同，舉行公演時並不擁有專屬表演場地（如AKB48劇場），但操作方式較為專業。根據秋元康所說，團體名稱中的「46」象徵「就算人數比AKB48少，也具有不遜於AKB48的幹勁」。</p>
-            <p class="text-h6 mb-10">
+            <p class="wow fadeInUp text-h6">日本大型女子偶像團體，成立於2011年8月21日；其出道時定位為另一女子偶像團體AKB48的「官方對手」（公式ライバル），但有獨立的幕後團隊，行銷策略及團體風格也與AKB48系列團體不同，惟總製作人同樣是秋元康。目前共有43名成員，其中隊長為秋元真夏、副隊長為梅澤美波。</p>
+            <p class="wow fadeInUp text-h6">乃木坂46最初是做為「AKB48官方對手」而成立的女子團體。與AKB48及其姊妹團體（如SKE48等）不同，舉行公演時並不擁有專屬表演場地（如AKB48劇場），但操作方式較為專業。根據秋元康所說，團體名稱中的「46」象徵「就算人數比AKB48少，也具有不遜於AKB48的幹勁」。</p>
+            <p class="wow fadeInUp text-h6 mb-10">
               乃木坂46全體成員所屬的經紀公司為「乃木坂46合同會社」（乃木坂46LLC）。附屬於乃木坂46合同會社的「乃木坂46營運委員會」（乃木坂46運営委員会）負責整個團體的營運工作。
             </p>
-            <BtnNormal :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
+            <BtnNormal class="wow fadeInUp" :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
           </div>
         </v-img>
         <!-- play按鈕 -->
@@ -71,7 +72,8 @@
     <!-- card -->
     <v-container class="mb-10">
       <div class="d-flex justify-space-between" :class="isMobile ? 'flex-column' : ''">
-        <div v-for="(card,index) in cardData" :key="index" class="myCard rounded" :class="`card${index}`" @mouseenter="showCard(`card${index}`)" @mouseleave="closeCard(`card${index}`)" @click="openPage(card.link)">
+        <!-- 幫每個card動態添加class card+index -->
+        <div v-for="(card,index) in cardData" :key="index" class="wow fadeInUp myCard rounded" :class="`card${index}`" @mouseenter="showCard(`card${index}`)" @mouseleave="closeCard(`card${index}`)" @click="openPage(card.link)">
           <v-img class="cardImg" width="100%" height="100%" :src="card.img"></v-img>
           <div :style="{height:'100%'}" class="cardText">
             <div class="title">
@@ -145,9 +147,6 @@ export default {
       return ['xs', 'sm'].includes(this.$vuetify.breakpoint.name)
     },
   },
-  destroyed(){
-  
-  },
 
   mounted() {
     gsap.registerPlugin(ScrollTrigger)
@@ -157,7 +156,7 @@ export default {
     // 不用設斷點 就直接寫gsap.to即可
     // markers 開啟的狀態下 跳到別頁畫面可能會有點偏移 F5重整或關閉markers即可
     ScrollTrigger.matchMedia({
-      // 跟設定css一樣  如果畫面不小於 600px 執行
+      // 跟設定css一樣  如果畫面不小於 0px 執行
       '(min-width: 0px)': () => {
         // video
         gsap.to(this.$refs.videoWrap, {
@@ -207,7 +206,7 @@ export default {
 
     // join
     // vuetify的class是important 會造成gsap無法覆蓋
-    // css的:hover無法改變component的class 這裡必須用gsap
+    // css的:hover必須用深層寫法才能改變component的class 所以這裡先用gsap
     const joinArea = document.querySelector('.joinArea')
     const joinBtnCircle = document.querySelector(
       '.joinBtn > span > .btn-circle'
@@ -307,6 +306,7 @@ export default {
     },
     // 觸碰到card
     showCard(cardClass) {
+      // 手機版不做改變
       if (this.isMobile) return
       // 獲取card和底下的子元素
       const card = document.querySelector(`.${cardClass}`)

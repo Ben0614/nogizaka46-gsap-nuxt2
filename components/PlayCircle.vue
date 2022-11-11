@@ -11,6 +11,7 @@
     <v-dialog v-model="_dialogVisible" fullscreen persistent>
       <v-card width="100%" height="100%" :style="{background:'rgba(0,0,0,0.7)'}" class="d-flex justify-center align-center">
         <div class="d-flex" :style="{width:isMobile ? '100%' : '50%',height:'50%'}">
+          <!-- 要用%設定iframe 一定要給父層寬高 -->
           <iframe width="100%" height="100%" :src="youtubePath" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <v-btn icon class="ml-15" :class="isMobile ? 'closeBtn' : ''" @click="dialogClose">
             <v-icon size="60px" color="#fff">mdi-close</v-icon>

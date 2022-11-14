@@ -2,12 +2,12 @@
   <div :style="{overflow: 'hidden'}">
     <!-- section-1  -->
     <div :style="{padding:isMobile ? '80px 50px 50px' : '400px 50px 50px'}" class="white mb-60 d-flex justify-space-between" :class="isMobile ? 'flex-column align-start' : 'align-end'">
-      <h1 class="font-weight-bold" :class="isMobile ? 'text-h3 mb-3' : 'text-h1'">
+      <h1 class="wow fadeInUp font-weight-bold" :class="isMobile ? 'text-h3 mb-3' : 'text-h1'">
         乃木坂46は
         <br>
         未来です
       </h1>
-      <h4 class="font-weight-bold" :class="isMobile ? 'text-h6' : 'text-h4'">僕は信じます</h4>
+      <h4 class="wow fadeInUp font-weight-bold" :class="isMobile ? 'text-h6' : 'text-h4'">僕は信じます</h4>
     </div>
 
     <!-- video 伸縮 -->
@@ -45,7 +45,7 @@
       <!-- 圖片外層 -->
       <div :style="{position:'relative',margin:'400px 0 60px',width:isMobile ? '100%' : '80%'}" class="d-flex justify-center">
         <!-- 圖片區域 -->
-        <v-img :style="{position:'relative',zIndex:'1'}" :src="require('@/assets/images/nogizaka46/nogizaka46.jpeg')" class="wow fadeIn" data-wow-offset="700">
+        <v-img :style="{position:'relative',zIndex:'1'}" :src="require('@/assets/images/nogizaka46/nogizaka46.jpeg')" class="wow fadeIn" data-wow-offset="700" data-wow-duration="3s">
           <!-- 圖片遮罩 -->
           <div class="img-bg"></div>
           <!-- 文字內容區域 -->

@@ -1,18 +1,17 @@
 <template>
-  <div class="white--text">
+  <div :style="{overflow:'hidden'}" class="white--text">
     <!-- section1 -->
-    <!-- height的減80px  80px是header的高 (現在因為有在view頁面做判斷 所以不用管) -->
     <div class="section" :style="{backgroundColor:'#000',width:'100%',height:'calc(100vh)',clipPath: 'inset(0)'}">
-      <!-- top:'80px' header高 (現在因為有在view頁面做判斷 所以不用管) -->
-      <div :style="{position: 'fixed',left: '0',top:'0',width:'100%',height:'100%',zIndex:0}" class="d-flex align-end">
+      <div :style="{position: 'fixed',left: '0',top:'0px',width:'100%',height:'100%',zIndex:0}" class="d-flex align-end">
         <!-- 背景影片 -->
-        <!-- transform:'rotateY(180deg)' -->
-        <video :style="{position:'absolute',width:'100%',top:'0',left:'0'}" src="@/assets/video/2ndAlbum.mp4" autoplay muted loop></video>
+        <!-- transform:'rotateY(180deg)' *現在沒在用 -->
+        <!-- top:'80px' header高度 -->
+        <video ref="bannerVideo" :style="{position:'absolute',width:'100%',top:'80px',left:'0',objectFit:'cover'}" src="@/assets/video/2ndAlbum.mp4" autoplay muted loop></video>
         <!-- 文字內容 -->
-        <v-container :style="{position:'relative',zIndex:2}" class="d-flex justify-space-between align-end mb-10">
+        <v-container :style="{position:'relative',height:'100%',zIndex:2}" class="d-flex justify-space-between align-end mb-10">
           <div>
-            <h1 class="section1Title wow slideInUp text-h1 mb-10" data-wow-duration="0.5s">乃木坂46 新メンバー募集開始</h1>
-            <p class="section1Content wow fadeIn text-h5" data-wow-delay="0.7s">
+            <h1 class="section1Title wow slideInUp mb-10" :class="isMobile ? 'text-h5' : 'text-h1'" data-wow-duration="0.5s">乃木坂46 新メンバー募集開始</h1>
+            <p class="section1Content wow fadeIn" data-wow-delay="0.7s" :class="isMobile ? '' : 'text-h5'">
               誰にも言えていない、夢がある？
               <br>
               あの人のどこに、憧れている？
@@ -42,7 +41,7 @@
     <div class="section section2 bg py-10">
       <!-- card -->
       <v-container class="mb-15">
-        <h1 class="text-h2 mb-10">私たちの番組</h1>
+        <h1 class="mb-10" :class="isMobile ? 'text-h5' : 'text-h2'">私たちの番組</h1>
         <v-row>
           <v-col v-for="(card,index) in cards" :key="index" cols="12" md="4">
             <div class="processCard rounded-lg py-8 px-5">
@@ -81,13 +80,37 @@
           <div class="box">乃木坂46</div>
         </div>
       </div>
+
+      <v-container>
+        <v-row justify="center">
+          <v-expansion-panels v-model="activeExpand" accordion tile dark>
+            <v-expansion-panel v-for="(item,index) in expansionData" :key="index" :style="{borderTop:index === 0 ? '1px solid #fff' : '',borderBottom:'1px solid #fff'}">
+              <v-expansion-panel-header color="#0e0e0e" class="white--text" hide-actions>
+                <div class="d-flex justify-space-between align-center">
+                  <h4>{{item.title}}</h4>
+                  <div class="expandArea">
+                    <v-btn icon class="expandBtn" x-large>
+                      <v-icon :style="{transform: index === activeExpand ? 'rotate(180deg)' : ''}">mdi-chevron-down</v-icon>
+                    </v-btn>
+                    <div class="overlay"></div>
+                  </div>
+                </div>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content color="#0e0e0e" class="white--text">
+                {{item.content}}
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </v-row>
+      </v-container>
     </div>
+
     <!-- 卡片側邊欄 -->
-    <v-navigation-drawer v-model="drawer" fixed app temporary right width="40%" :style="{zIndex:100}" class="py-5 px-15">
+    <v-navigation-drawer v-model="drawer" fixed app temporary right :width="isMobile ? '100%' : '40%'" :style="{zIndex:100}" class="" :class="isMobile ? 'py-15 px-3' : 'py-5 px-15'">
       <v-btn :style="{position:'absolute',top:'20px',right:'20px'}" icon class="black" @click="drawer = false">
         <v-icon color="white">mdi-close</v-icon>
       </v-btn>
-      <v-tabs v-model="tab" background-color="transparent" color="black" grow class="mb-5">
+      <v-tabs v-model="tab" :show-arrows="isMobile ? true : false" background-color="transparent" color="black" grow class="mb-5">
         <v-tab v-for="(item,index) in drawerDatas" :key="index" class="mx-3">
           {{ item.tab }}
         </v-tab>
@@ -136,6 +159,13 @@ export default {
       //   'https://player.vimeo.com/progressive_redirect/playback/703186983/rendition/1080p?loc=external&signature=0295f802f1d2573f68e79c70168d733450a751c94901c6e8f9934575131f90aa',
       // videoUrl: '@/assets/video/2ndAlbum.mp4',
       // 卡片資料
+      expansionData: [
+        { title: '結成時間', content: '2021/8/21' },
+        { title: '專輯數量', content: '31' },
+        { title: '紅白次數', content: '7' },
+        { title: '成員總期數', content: '5' },
+      ],
+      activeExpand: null,
       cards: [
         {
           type: '冠名綜藝番組',
@@ -185,6 +215,11 @@ export default {
       ],
     }
   },
+  computed: {
+    isMobile() {
+      return ['xs', 'sm'].includes(this.$vuetify.breakpoint.name)
+    },
+  },
   mounted() {
     // wow
     this.$nextTick(() => {
@@ -193,7 +228,30 @@ export default {
       new WOW({ live: false }).init()
     })
     gsap.registerPlugin(ScrollTrigger)
-    
+
+    // 如果往下滑動 就讓大video top變0
+    // 如果只寫from 一開始進來top會是0
+    const videoUp = gsap.fromTo(
+      this.$refs.bannerVideo,
+      {
+        top: 0,
+        paused: true,
+        duration: 0.2,
+      },
+      {
+        top: 80,
+        duration: 0.2,
+      }
+    )
+
+    ScrollTrigger.create({
+      start: 'top top',
+      end: 'bottom',
+      onUpdate: (self) => {
+        self.direction === -1 ? videoUp.play() : videoUp.reverse()
+      },
+    })
+
     // 卡片hover和click
     const cards = gsap.utils.toArray('.processCard')
     const cardBtns = gsap.utils.toArray('.processCard .btnCircle')
@@ -262,8 +320,8 @@ export default {
   methods: {
     // 到第2區域
     goToSection2() {
-      // 80 header高 (現在因為有在view頁面做判斷 所以不用管)
-      const top = document.querySelector('.section2').offsetTop
+      // 80 header高
+      const top = document.querySelector('.section2').offsetTop + 80
       const scrollToTop = window.setInterval(function () {
         const pos = window.pageYOffset
         if (pos < top) {
@@ -278,19 +336,51 @@ export default {
 </script>
 
 <style lang="scss">
+.expandArea {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+
+  &:hover {
+    .expandBtn {
+      background-color: transparent;
+    }
+    .overlay {
+      right: 0;
+    }
+  }
+
+  .expandBtn {
+    position: relative;
+    background-color: rgb(130, 130, 130, 0.3);
+    z-index: 1;
+    transition: 0.3s;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    right: -60px;
+    width: 60px;
+    height: 52px;
+    background-image: linear-gradient(to right, black, purple);
+    transition: 0.3s;
+  }
+}
+
+/* width 150% 會造成爆版 這頁最外層用overflow hidden */
 .marquee {
   width: 150%; // width必須大一點 否則有些字會瞬間消失
   height: 50px;
-  overflow: hidden;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
+  /* overflow: hidden; */
 }
 .marquee .boxes {
   position: relative;
   left: -16.6666%; // 會消除掉的位置
   height: 50px;
+  @media screen and (max-width: 960px) {
+    left: -33.3333%;
+  }
 }
 .marquee .box {
   position: absolute;
@@ -300,6 +390,10 @@ export default {
   font-weight: 700;
   line-height: 50px;
   text-align: center;
+  @media screen and (max-width: 960px) {
+    width: 33.3333%;
+    font-size: 30px;
+  }
 }
 
 .section {
@@ -312,6 +406,9 @@ export default {
   border: 1px solid gray;
   cursor: pointer;
   overflow: hidden;
+  @media screen and (max-width: '960px') {
+    height: 500px;
+  }
   video {
     position: absolute;
     height: 100%;

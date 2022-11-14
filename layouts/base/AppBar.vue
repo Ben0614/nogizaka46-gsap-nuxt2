@@ -17,7 +17,6 @@ export default {
 
   computed: {},
   mounted() {
-    // 如果需要設斷點 就用這個
     gsap.registerPlugin(ScrollTrigger)
 
     const showAnim = gsap

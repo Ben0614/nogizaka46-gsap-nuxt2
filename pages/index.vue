@@ -159,6 +159,7 @@ export default {
       // 跟設定css一樣  如果畫面不小於 0px 執行
       '(min-width: 0px)': () => {
         // video
+        // this.$refs.videoWrap 要變化得物件
         gsap.to(this.$refs.videoWrap, {
           // x: 300,
           // rotation: 360,
@@ -167,8 +168,8 @@ export default {
           borderRadius: '0px',
           scrollTrigger: {
             trigger: this.$refs.videoWrap, // 觸發得物件
-            start: 'top +=50%', // (物件開始位置, 卷軸開始位置) top center bottom px
-            end: '+=50%', // (物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
+            start: 'top +=50%', // (物件開始位置, 卷軸(變化)開始位置) top center bottom px   +=是往上 -=是往下
+            end: '+=50%', // (物件結束位置, 卷軸(變化)結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)   +=是往上 -=是往下 (這裡設定是捲動50%結束動畫)
             pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
             scrub: true, // 物件動畫根據卷軸捲動程度跑
             // toggleClass: 'active', //  class名稱 須為字串

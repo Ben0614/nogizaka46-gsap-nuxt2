@@ -5,7 +5,7 @@
     <base-view />
 
     <footer-view />
-    <mobile-navigation />
+    <!-- <mobile-navigation /> -->
   </v-app>
 </template>
 
@@ -16,7 +16,7 @@
       BaseAppBar: () => import('./AppBar'),
       BaseView: () => import('./View'),
       FooterView: () => import('./Footer'),
-      MobileNavigation: () => import('./MobileNavigationBar'),
+      // MobileNavigation: () => import('./MobileNavigationBar'),
     },
   }
 </script>

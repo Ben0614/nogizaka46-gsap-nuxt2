@@ -29,11 +29,13 @@
               この世界の、未完成は美しい。
             </p>
           </div>
+          <!-- gsap控制 -->
+          <BtnCircle :icon-name="'mdi-chevron-down'" :btn-color="'white'" :btn-hover-color="'gray'" :icon-color="'black'" :icon-hover-color="'white'" :time="'0.3'" class="bannerVideoBtn"></BtnCircle>
+
+          <!-- 純js控制 -->
           <!-- fn-name 點擊後要調用的function name -->
-          <BtnCircle :icon-name="'mdi-chevron-down'" :btn-color="'white'" :btn-hover-color="'gray'" :icon-color="'black'" :icon-hover-color="'white'" :time="'0.3'" :fn-name="'goToSection2'" @goToSection2="goToSection2"></BtnCircle>
-          <!-- <v-btn width="50" height="50" icon class="downBtn" @click="goToSection2">
-            <v-icon size="30">mdi-chevron-down</v-icon>
-          </v-btn> -->
+          <!-- <BtnCircle :icon-name="'mdi-chevron-down'" :btn-color="'white'" :btn-hover-color="'gray'" :icon-color="'black'" :icon-hover-color="'white'" :time="'0.3'" :fn-name="'goToSection2'" @goToSection2="goToSection2"></BtnCircle> -->
+
         </v-container>
       </div>
     </div>
@@ -146,6 +148,7 @@
 import { WOW } from 'wowjs'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import BtnCircle from '@/components/base/BtnCircle'
 export default {
   name: 'Detail',
@@ -227,7 +230,8 @@ export default {
       // offset可以直接在tag裡用data-wow-offset設定
       new WOW({ live: false }).init()
     })
-    gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger,ScrollToPlugin)
+
 
     // 如果往下滑動 就讓大video top變0
     // 如果只寫from 一開始進來top會是0
@@ -250,6 +254,18 @@ export default {
       onUpdate: (self) => {
         self.direction === -1 ? videoUp.play() : videoUp.reverse()
       },
+    })
+
+    // 到第二區域btn
+    const section2Top = document.querySelector('.section2').offsetTop + 80   // 80 header高
+    const bannerVideoBtn = document.querySelector('.bannerVideoBtn')
+    bannerVideoBtn.addEventListener('click', () => {
+      gsap.to(window, {
+        duration: 0.5,
+        scrollTo: {
+          y: section2Top,
+        },
+      })
     })
 
     // 卡片hover和click
@@ -319,18 +335,18 @@ export default {
   },
   methods: {
     // 到第2區域
-    goToSection2() {
-      // 80 header高
-      const top = document.querySelector('.section2').offsetTop + 80
-      const scrollToTop = window.setInterval(function () {
-        const pos = window.pageYOffset
-        if (pos < top) {
-          window.scrollTo(0, pos + 20) // 每一次滾動多遠
-        } else {
-          window.clearInterval(scrollToTop)
-        }
-      }, 10)
-    },
+    // goToSection2() {
+    //   // 80 header高
+    //   const top = document.querySelector('.section2').offsetTop + 80
+    //   const scrollToTop = window.setInterval(function () {
+    //     const pos = window.pageYOffset
+    //     if (pos < top) {
+    //       window.scrollTo(0, pos + 20) // 每一次滾動多遠
+    //     } else {
+    //       window.clearInterval(scrollToTop)
+    //     }
+    //   }, 10)
+    // },
   },
 }
 </script>

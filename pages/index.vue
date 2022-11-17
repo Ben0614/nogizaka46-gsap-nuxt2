@@ -138,9 +138,6 @@ export default {
       ],
     }
   },
-  head: {
-    title: 'Home',
-  },
 
   computed: {
     isMobile() {

@@ -8,20 +8,16 @@
     <!-- 滾動進度條 -->
     <!-- <div class="progress"></div> -->
     <div class="progress" :style="{height:progressHeight+'%'}"></div>
-    <!-- <mobile-navigation /> -->
   </v-app>
 </template>
 
 <script>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 export default {
   name: 'BaseLayout',
   components: {
     BaseAppBar: () => import('./base/AppBar'),
     BaseView: () => import('./base/View'),
     FooterView: () => import('./base/Footer'),
-    // MobileNavigation: () => import('./base/MobileNavigationBar'),
   },
   data() {
     return {
@@ -29,8 +25,6 @@ export default {
     }
   },
   mounted() {
-    gsap.registerPlugin(ScrollTrigger)
-
     window.addEventListener('scroll', this.handleProgress)
   },
   methods: {

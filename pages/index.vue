@@ -1,5 +1,5 @@
 <template>
-  <div :style="{overflow: 'hidden'}">
+  <div>
     <!-- section-1  -->
     <div :style="{padding:isMobile ? '80px 50px 50px' : '400px 50px 50px'}" class="white mb-60 d-flex justify-space-between" :class="isMobile ? 'flex-column align-start' : 'align-end'">
       <h1 class="wow fadeInUp font-weight-bold" :class="isMobile ? 'text-h3 mb-3' : 'text-h1'">
@@ -173,7 +173,7 @@ export default {
             pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
             scrub: true, // 物件動畫根據卷軸捲動程度跑
             // toggleClass: 'active', //  class名稱 須為字串
-            markers: true, // 顯示標記
+            // markers: true, // 顯示標記
           },
         })
         // circle
@@ -188,7 +188,7 @@ export default {
             end: '+=50%', // (物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
             pin: false,
             scrub: true,
-            markers: true,
+            // markers: true,
           },
         })
         gsap.to(this.$refs.circleWrap, {
@@ -199,7 +199,7 @@ export default {
             end: 'top', // (物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
             pin: false,
             scrub: true,
-            markers: true,
+            // markers: true,
           },
         })
       },

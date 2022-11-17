@@ -1,14 +1,16 @@
 <template>
-  <div :style="{overflow:'hidden'}" class="white--text">
+  <div class="wrap white--text">
     <!-- section1 -->
-    <div class="section" :style="{backgroundColor:'#000',width:'100%',height:'calc(100vh)',clipPath: 'inset(0)'}">
-      <div :style="{position: 'fixed',left: '0',top:'0px',width:'100%',height:'100%',zIndex:0}" class="d-flex align-end">
+    <!-- ,clipPath: 'inset(0)' *現在沒在用 -->
+    <div class="section1" :style="{backgroundColor:'#000',width:'100%',height:'100vh'}">
+      <!-- position: 'fixed',left: '0',top:'0px' *現在沒在用 -->
+      <div :style="{width:'100%',height:'100%',zIndex:0}" class="d-flex align-end">
         <!-- 背景影片 -->
         <!-- transform:'rotateY(180deg)' *現在沒在用 -->
-        <!-- top:'80px' header高度 -->
-        <video ref="bannerVideo" :style="{position:'absolute',width:'100%',top:'80px',left:'0',objectFit:'cover'}" src="@/assets/video/2ndAlbum.mp4" autoplay muted loop></video>
+        <!-- top:'80px' header高度 *現在沒在用 -->
+        <video ref="bannerVideo" :style="{position:'absolute',width:'100%',top:'0',left:'0',objectFit:'cover'}" src="@/assets/video/2ndAlbum.mp4" autoplay muted loop></video>
         <!-- 文字內容 -->
-        <v-container :style="{position:'relative',height:'100%',zIndex:2}" class="d-flex justify-space-between align-end mb-10">
+        <v-container :style="{position:'relative',height:'100%',zIndex:2,marginBottom:'80px'}" class="videoText d-flex justify-space-between align-end">
           <div>
             <h1 class="section1Title wow slideInUp mb-10" :class="isMobile ? 'text-h5' : 'text-h1'" data-wow-duration="0.5s">乃木坂46 新メンバー募集開始</h1>
             <p class="section1Content wow fadeIn" data-wow-delay="0.7s" :class="isMobile ? '' : 'text-h5'">
@@ -40,7 +42,7 @@
       </div>
     </div>
     <!-- section2 -->
-    <div class="section section2 bg py-10">
+    <div class="section2 bg py-10">
       <!-- card -->
       <v-container class="mb-15">
         <h1 class="mb-10" :class="isMobile ? 'text-h5' : 'text-h2'">私たちの番組</h1>
@@ -230,34 +232,44 @@ export default {
       // offset可以直接在tag裡用data-wow-offset設定
       new WOW({ live: false }).init()
     })
-    gsap.registerPlugin(ScrollTrigger,ScrollToPlugin)
-
-
-    // 如果往下滑動 就讓大video top變0
-    // 如果只寫from 一開始進來top會是0
-    const videoUp = gsap.fromTo(
-      this.$refs.bannerVideo,
-      {
-        top: 0,
-        paused: true,
-        duration: 0.2,
-      },
-      {
-        top: 80,
-        duration: 0.2,
-      }
-    )
-
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+    
+    // 視差
+    // section1 影片區 100vh
     ScrollTrigger.create({
+      trigger: '.section1',
       start: 'top top',
-      end: 'bottom',
-      onUpdate: (self) => {
-        self.direction === -1 ? videoUp.play() : videoUp.reverse()
-      },
+      pin: true,
+      pinSpacing: false,
+      // markers: true,
     })
+    // section2 內容區 高度由內容撐開 所以必須給end: 'top top' 否則只能看到局部的內容
+    ScrollTrigger.create({
+      trigger: '.section2',
+      start: 'top top',
+      end: 'top top',
+      pin: true,
+      pinSpacing: false,
+      // markers: true,
+    })
+    // 暫時不用
+    // // 如果往下滑動 就讓大video top變0
+    // const videoUp = gsap.to('.wrap', {
+    //   marginTop: 0,
+    //   paused: true,
+    //   duration: 0.2,
+    // })
+
+    // ScrollTrigger.create({
+    //   start: 'top top',
+    //   onUpdate: (self) => {
+    //     // 往下滑動是1 往上滑動是-1
+    //     self.direction === 1 ? videoUp.play() : videoUp.reverse()
+    //   },
+    // })
 
     // 到第二區域btn
-    const section2Top = document.querySelector('.section2').offsetTop + 80   // 80 header高
+    const section2Top = window.innerHeight + 80 // 80 header高
     const bannerVideoBtn = document.querySelector('.bannerVideoBtn')
     bannerVideoBtn.addEventListener('click', () => {
       gsap.to(window, {
@@ -412,9 +424,9 @@ export default {
   }
 }
 
-.section {
+/* .section {
   width: 100%;
-}
+} */
 
 .processCard {
   position: relative;

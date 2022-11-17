@@ -28,7 +28,7 @@ export default {
       .progress(1)
 
     ScrollTrigger.create({
-      start: 'top top',
+      start: '80 top',
       end: 'bottom',
       onUpdate: (self) => {
         self.direction === -1 ? showAnim.play() : showAnim.reverse()

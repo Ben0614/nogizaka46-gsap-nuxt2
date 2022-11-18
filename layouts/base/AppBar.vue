@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 export default {
   name: 'BaseAppBar',
   directives: {},
@@ -17,9 +15,8 @@ export default {
 
   computed: {},
   mounted() {
-    gsap.registerPlugin(ScrollTrigger)
 
-    const showAnim = gsap
+    const showAnim = this.$gsap
       .from(this.$refs.header, {
         yPercent: -100,
         paused: true,
@@ -27,7 +24,7 @@ export default {
       })
       .progress(1)
 
-    ScrollTrigger.create({
+    this.$scrollTrigger.create({
       start: '80 top',
       end: 'bottom',
       onUpdate: (self) => {

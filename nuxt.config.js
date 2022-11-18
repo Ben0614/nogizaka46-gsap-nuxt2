@@ -40,6 +40,7 @@ export default {
     { src: '~/plugins/vue-slick' },
     { src: '~/plugins/apexcharts', mode: 'client' },
     { src: '~/plugins/vue-svg-inline-plugin.client.js' },
+    { src: '~/plugins/gsap', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

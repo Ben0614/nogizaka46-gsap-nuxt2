@@ -41,11 +41,11 @@
     <!-- 圓球背景 -->
     <div ref="circleWrap" :style="{margin:'0 0 100px',position:'relative'}" class="d-flex justify-center pb-15">
       <!-- 圓球 -->
-      <div ref="greyCircle" :style="{position:'absolute',top:'0',zIndex:'1',background:'gray',width:'0',height:'0',borderRadius:'50%'}"></div>
+      <div ref="greyCircle" :style="{position:'absolute',top:'0',zIndex:'2',background:'gray',width:'0',height:'0',borderRadius:'50%'}"></div>
       <!-- 圖片外層 -->
       <div :style="{position:'relative',margin:'400px 0 60px',width:isMobile ? '100%' : '80%'}" class="d-flex justify-center">
         <!-- 圖片區域 -->
-        <v-img :style="{position:'relative',zIndex:'1'}" :src="require('@/assets/images/nogizaka46/nogizaka46.jpeg')" class="wow fadeIn" data-wow-offset="700" data-wow-duration="3s">
+        <v-img :style="{position:'relative',zIndex:'2'}" :src="require('@/assets/images/nogizaka46/nogizaka46.jpeg')" class="wow fadeIn" :data-wow-offset="isMobile ? '600' : '700'" data-wow-duration="3s">
           <!-- 圖片遮罩 -->
           <div class="img-bg"></div>
           <!-- 文字內容區域 -->
@@ -103,8 +103,6 @@
 
 <script>
 import { WOW } from 'wowjs'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // import GSDevTools from "gsap/GSDevTools"
 import BtnNormal from '@/components/base/BtnNormal'
 import PlayCircle from '@/components/PlayCircle'
@@ -146,18 +144,23 @@ export default {
   },
 
   mounted() {
-    gsap.registerPlugin(ScrollTrigger)
+    // wow
+    this.$nextTick(() => {
+      // 可以根據不同需求 創建wow
+      // offset可以直接在tag裡用data-wow-offset設定
+      new WOW({ live: false }).init()
+    })
 
     // video和circle
     // 如果需要設斷點 就用matchMedia
     // 不用設斷點 就直接寫gsap.to即可
     // markers 開啟的狀態下 跳到別頁畫面可能會有點偏移 F5重整或關閉markers即可
-    ScrollTrigger.matchMedia({
+    this.$scrollTrigger.matchMedia({
       // 跟設定css一樣  如果畫面不小於 0px 執行
       '(min-width: 0px)': () => {
         // video
         // this.$refs.videoWrap 要變化得物件
-        gsap.to(this.$refs.videoWrap, {
+        this.$gsap.to(this.$refs.videoWrap, {
           // x: 300,
           // rotation: 360,
           duration: 1,
@@ -165,35 +168,34 @@ export default {
           borderRadius: '0px',
           scrollTrigger: {
             trigger: this.$refs.videoWrap, // 觸發得物件
-            start: 'top +=50%', // (物件開始位置, 卷軸(變化)開始位置) top center bottom px   +=是往上 -=是往下
-            end: '+=50%', // (物件結束位置, 卷軸(變化)結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)   +=是往上 -=是往下 (這裡設定是捲動50%結束動畫)
+            start: 'top +=50%', // (物件開始位置, 卷軸(變化)開始位置) top center bottom px
+            end: '+=50%', // (物件結束位置, 卷軸(變化)結束位置)
             pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
             scrub: true, // 物件動畫根據卷軸捲動程度跑
-            // toggleClass: 'active', //  class名稱 須為字串
             // markers: true, // 顯示標記
           },
         })
         // circle
         // 這個會造成爆版 而且還會有bug 必須要在這個頁面最外層放overflow hidden解決
-        gsap.to(this.$refs.greyCircle, {
+        this.$gsap.to(this.$refs.greyCircle, {
           width: '200px',
           height: '200px',
           scale: 50,
           scrollTrigger: {
             trigger: this.$refs.greyCircle,
             start: 'top +=50%', // (物件開始位置, 卷軸開始位置) top center bottom px
-            end: '+=50%', // (物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
+            end: '+=50%', // (物件結束位置, 卷軸結束位置)
             pin: false,
             scrub: true,
             // markers: true,
           },
         })
-        gsap.to(this.$refs.circleWrap, {
+        this.$gsap.to(this.$refs.circleWrap, {
           overflow: 'hidden',
           scrollTrigger: {
             trigger: this.$refs.circleWrap,
             start: 'top top-=200', // (物件開始位置, 卷軸開始位置) top center bottom px
-            end: 'top', // (物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
+            end: 'top', // (物件結束位置, 卷軸結束位置)
             pin: false,
             scrub: true,
             // markers: true,
@@ -219,77 +221,36 @@ export default {
     // console.log('joinBtnCircle',joinBtnCircle);
     // console.log('joinBtnText',joinBtnText);
     joinArea.addEventListener('mouseenter', () => {
-      gsap.to(joinArea, {
+      this.$gsap.to(joinArea, {
         duration: 0.3,
         backgroundColor: '#9e3eb2',
       })
-      gsap.to(joinBtnCircle, {
+      this.$gsap.to(joinBtnCircle, {
         duration: 0.1,
         scale: 50,
       })
-      gsap.to(joinBtnText, {
+      this.$gsap.to(joinBtnText, {
         duration: 0.3,
         color: '#9e3eb2',
       })
     })
     joinArea.addEventListener('mouseleave', () => {
-      gsap.to(joinArea, {
+      this.$gsap.to(joinArea, {
         duration: 0.3,
         backgroundColor: '#000',
       })
-      gsap.to(joinBtnCircle, {
+      this.$gsap.to(joinBtnCircle, {
         duration: 0.1,
         scale: 1,
       })
-      gsap.to(joinBtnText, {
+      this.$gsap.to(joinBtnText, {
         duration: 0.3,
         color: '#fff',
       })
     })
 
-    // wow
-    this.$nextTick(() => {
-      // 可以根據不同需求 創建wow
-      // offset可以直接在tag裡用data-wow-offset設定
-      new WOW({ live: false }).init()
-    })
-
-    // const cards = gsap.utils.toArray('.myCard')
-    // const cardImgs = gsap.utils.toArray('.myCard > .cardImg')
-    // cards.forEach((card, index) => {
     //   const siblingsLeft = cards.slice(index + 1)
     //   const siblingsRight = cards.slice(0, index)
-    //   card.addEventListener('mouseenter', () => {
-    //     gsap.to(card, {
-    //       duration: 0.3,
-    //       width: 'calc(80% - 10px)',
-    //     })
-    //     gsap.to(cardImgs[index], {
-    //       opacity:1
-    //     })
-    //     if (siblingsLeft.length) {
-    //       gsap.to(siblingsLeft, {
-    //         duration: 0.3,
-    //         width: 'calc(20%  - 10px)',
-    //       })
-    //     }
-    //     if (siblingsRight.length) {
-    //       gsap.to(siblingsRight, {
-    //         duration: 0.3,
-    //         width: 'calc(20%  - 10px)',
-    //       })
-    //     }
-    //   })
-    //   card.addEventListener('mouseleave', () => {
-    //     gsap.to(cards, {
-    //       duration: 0.3,
-    //       width: 'calc(50% - 10px)',
-    //     })
-    //     gsap.to(cardImgs, {
-    //       opacity:0
-    //     })
-    //   })
-    // })
   },
   methods: {
     openVideo(val) {
@@ -440,6 +401,7 @@ export default {
       color: #fff;
       opacity: 0;
       transition: 0.3s;
+      width:80%;
       @media screen and (max-width: '960px') {
         opacity: 1;
       }
@@ -457,6 +419,10 @@ export default {
     border-radius: 50%;
     background-color: rgba(236, 236, 236, 1);
     transition: 0.3s;
+    @media screen and (max-width: '960px') {
+      bottom: 20px;
+      right: 20px;
+    }
   }
 }
 .playCirclePosition {

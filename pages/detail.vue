@@ -132,25 +132,11 @@
         </v-tab-item>
       </v-tabs-items>
     </v-navigation-drawer>
-
-    <!-- section -->
-    <!-- <div class="section bg1">
-      <h1 class="text-h1">Route46</h1>
-    </div>
-    <div class="section bg2">
-      <h1 class="text-h1">26th</h1>
-    </div>
-    <div class="section bg3">
-      <h1 class="text-h1">Album</h1>
-    </div> -->
   </div>
 </template>
 
 <script>
 import { WOW } from 'wowjs'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import BtnCircle from '@/components/base/BtnCircle'
 export default {
   name: 'Detail',
@@ -232,11 +218,10 @@ export default {
       // offset可以直接在tag裡用data-wow-offset設定
       new WOW({ live: false }).init()
     })
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
     
     // 視差
     // section1 影片區 100vh
-    ScrollTrigger.create({
+    this.$scrollTrigger.create({
       trigger: '.section1',
       start: 'top top',
       pin: true,
@@ -244,7 +229,7 @@ export default {
       // markers: true,
     })
     // section2 內容區 高度由內容撐開 所以必須給end: 'top top' 否則只能看到局部的內容
-    ScrollTrigger.create({
+    this.$scrollTrigger.create({
       trigger: '.section2',
       start: 'top top',
       end: 'top top',
@@ -260,7 +245,7 @@ export default {
     //   duration: 0.2,
     // })
 
-    // ScrollTrigger.create({
+    // this.$scrollTrigger.create({
     //   start: 'top top',
     //   onUpdate: (self) => {
     //     // 往下滑動是1 往上滑動是-1
@@ -272,7 +257,7 @@ export default {
     const section2Top = window.innerHeight + 80 // 80 header高
     const bannerVideoBtn = document.querySelector('.bannerVideoBtn')
     bannerVideoBtn.addEventListener('click', () => {
-      gsap.to(window, {
+      this.$gsap.to(window, {
         duration: 0.5,
         scrollTo: {
           y: section2Top,
@@ -281,9 +266,9 @@ export default {
     })
 
     // 卡片hover和click
-    const cards = gsap.utils.toArray('.processCard')
-    const cardBtns = gsap.utils.toArray('.processCard .btnCircle')
-    const cardBtnIcons = gsap.utils.toArray('.processCard .btnCircle .v-icon')
+    const cards = this.$gsap.utils.toArray('.processCard')
+    const cardBtns = this.$gsap.utils.toArray('.processCard .btnCircle')
+    const cardBtnIcons = this.$gsap.utils.toArray('.processCard .btnCircle .v-icon')
     cards.forEach((card, index) => {
       // 點擊就打開側邊欄 並指定tab
       card.addEventListener('click', () => {
@@ -291,18 +276,18 @@ export default {
         this.drawer = true
       })
       card.addEventListener('mouseenter', () => {
-        gsap.to(cardBtns[index], {
+        this.$gsap.to(cardBtns[index], {
           backgroundColor: '#fff',
         })
-        gsap.to(cardBtnIcons[index], {
+        this.$gsap.to(cardBtnIcons[index], {
           color: '#000',
         })
       })
       card.addEventListener('mouseleave', () => {
-        gsap.to(cardBtns[index], {
+        this.$gsap.to(cardBtns[index], {
           backgroundColor: 'gray',
         })
-        gsap.to(cardBtnIcons[index], {
+        this.$gsap.to(cardBtnIcons[index], {
           color: '#fff',
         })
       })
@@ -310,6 +295,7 @@ export default {
 
     // 跑馬燈
     // gsap.utils.toArray 和 document.querySelectorAll 可以通用
+    // getBoundingClientRect()  回傳元素的大小，以及其相對於可視範圍 (viewport) 的位置
     const box = document.querySelector('.box')
     const boxWidth = box.getBoundingClientRect().width
     const boxQuantity = document.querySelectorAll('.box').length
@@ -319,7 +305,9 @@ export default {
 
     console.log('boxWidth', boxWidth, 'boxQuantity', boxQuantity)
 
-    const mod = gsap.utils.wrap(0, totalWidth)
+    const mod = this.$gsap.utils.wrap(0, totalWidth)
+    // function裡 無法直接用this
+    const gsap = this.$gsap
     function marquee(which, time, direction) {
       gsap.set(which, {
         x(i) {
@@ -339,7 +327,7 @@ export default {
       return action
     }
 
-    const right = gsap
+    const right = this.$gsap
       .timeline({ paused: true })
       .add(marquee(marqueeWrapper, 10, dirFromRight))
 
@@ -442,7 +430,6 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
-    /* transform: scale(2); */
     z-index: 0;
     opacity: 0;
     transition: 0.3s;
@@ -456,26 +443,4 @@ export default {
 .bg {
   background-color: #0e0e0e;
 }
-
-/* .section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-}
-
-.bg1,
-.bg2,
-.bg3 {
-  background-image: url('@/assets/images//nogizaka46/sub1-3.jpg');
-  background-size: cover;
-  background-attachment: fixed;
-}
-.bg2 {
-  background-image: url('@/assets/images//nogizaka46/N4627-1200x900-cropped.jpg');
-}
-.bg3 {
-  background-image: url('@/assets/images/nogizaka46/nogizaka46.jpeg');
-} */
 </style>

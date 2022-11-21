@@ -2,12 +2,12 @@
   <div>
     <!-- section-1  -->
     <div :style="{padding:isMobile ? '80px 50px 50px' : '400px 50px 50px'}" class="white mb-60 d-flex justify-space-between" :class="isMobile ? 'flex-column align-start' : 'align-end'">
-      <h1 class="wow fadeInUp font-weight-bold" :class="isMobile ? 'text-h3 mb-3' : 'text-h1'">
+      <h1 class="fade-up font-weight-bold" :class="isMobile ? 'text-h3 mb-3' : 'text-h1'">
         乃木坂46は
         <br>
         未来です
       </h1>
-      <h4 class="wow fadeInUp font-weight-bold" :class="isMobile ? 'text-h6' : 'text-h4'">僕は信じます</h4>
+      <h4 class="fade-up font-weight-bold" :class="isMobile ? 'text-h6' : 'text-h4'">僕は信じます</h4>
     </div>
 
     <!-- video 伸縮 -->
@@ -19,17 +19,17 @@
         <!-- 黑色遮罩 -->
         <div class="video-bg"></div>
         <!-- 文字內容區域 -->
-        <div :style="{position:'absolute',top:isMobile ? '0' : '15%',left:isMobile ? '0' : '20%',zIndex:'2',width:'800px',maxWidth:'100%'}" class="white--text mx-auto pa-10">
-          <h2 class="wow fadeInUp mb-3" :class="isMobile ? 'text-h5' : 'text-h3'">
+        <div :style="{position:'absolute',top:isMobile ? '0' : isNoteBook ? '0%' : '15%',left:isMobile ? '0' : isNoteBook ? '10%' : '20%',zIndex:'2',width:'800px',maxWidth:'100%'}" class="white--text mx-auto pa-10">
+          <h2 class="fade-up mb-3" :class="isMobile ? 'text-h5' : isNoteBook ? 'text-h4' : 'text-h3'">
             乃木坂46
           </h2>
-          <h4 class="wow fadeInUp mb-15" :class="isMobile ? '' : 'text-h4'">のぎざか フォーティーシックス</h4>
-          <p class="wow fadeInUp" :class="isMobile ? '' : 'text-h6'">日本の女性アイドルグループである。秋元康のプロデュースにより、2011年8月21日に結成した</p>
-          <p class="wow fadeInUp" :class="isMobile ? '' : 'text-h6'">2011年にソニー・ミュージックエンタテインメント (SME) と秋元康の合同プロデュースによる新たな女性アイドルグループが企画され、乃木坂46の結成に至った。</p>
-          <p class="wow fadeInUp mb-10" :class="isMobile ? '' : 'text-h6'">
+          <h4 class="fade-up" :class="isMobile ? 'mb-10' : isNoteBook ? 'text-h5 mb-5': 'text-h4 mb-15'">のぎざか フォーティーシックス</h4>
+          <p class="fade-up" :class="isMobile ? '' : isNoteBook ? 'text-body-1' : 'text-h6'">日本の女性アイドルグループである。秋元康のプロデュースにより、2011年8月21日に結成した</p>
+          <p class="fade-up" :class="isMobile ? '' : isNoteBook ? 'text-body-1' : 'text-h6'">2011年にソニー・ミュージックエンタテインメント (SME) と秋元康の合同プロデュースによる新たな女性アイドルグループが企画され、乃木坂46の結成に至った。</p>
+          <p class="fade-up mb-10" :class="isMobile ? '' : isNoteBook ? 'text-body-1' : 'text-h6'">
             乃木坂46はAKB48グループに所属せず、AKB48の公式ライバルとして存在する[7]。AKB48グループが専用劇場を持つのに対し、乃木坂46は専用劇場を持たない[7]。AKB48グループが選抜総選挙を実施するのに対し、乃木坂46は舞台『16人のプリンシパル』における配役決定で投票を実施するという差別化を図っている[8]。このような差別化は乃木坂46の1stシングル『ぐるぐるカーテン』のミュージック・ビデオ (MV) における私立女子校の風景から提示され始めた[9]。
           </p>
-          <BtnNormal class="wow fadeInUp" :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
+          <BtnNormal class="fade-up" :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
         </div>
       </div>
       <!-- play按鈕 -->
@@ -45,20 +45,20 @@
       <!-- 圖片外層 -->
       <div :style="{position:'relative',margin:'400px 0 60px',width:isMobile ? '100%' : '80%'}" class="d-flex justify-center">
         <!-- 圖片區域 -->
-        <v-img :style="{position:'relative',zIndex:'2'}" :src="require('@/assets/images/nogizaka46/nogizaka46.jpeg')" class="wow fadeIn" :data-wow-offset="isMobile ? '600' : '700'" data-wow-duration="3s">
+        <v-img :style="{position:'relative',zIndex:'2'}" :src="require('@/assets/images/nogizaka46/nogizaka46.jpeg')" class="fade">
           <!-- 圖片遮罩 -->
           <div class="img-bg"></div>
           <!-- 文字內容區域 -->
           <div :style="{position:'relative',zIndex:'1',width:'800px',maxWidth:'100%'}" class="white--text mx-auto py-15 px-3">
-            <h2 class="wow fadeInUp text-h3 mb-15">
+            <h2 class="fade-up text-h3 mb-15">
               乃木坂46
             </h2>
-            <p class="wow fadeInUp text-h6">日本大型女子偶像團體，成立於2011年8月21日；其出道時定位為另一女子偶像團體AKB48的「官方對手」（公式ライバル），但有獨立的幕後團隊，行銷策略及團體風格也與AKB48系列團體不同，惟總製作人同樣是秋元康。目前共有43名成員，其中隊長為秋元真夏、副隊長為梅澤美波。</p>
-            <p class="wow fadeInUp text-h6">乃木坂46最初是做為「AKB48官方對手」而成立的女子團體。與AKB48及其姊妹團體（如SKE48等）不同，舉行公演時並不擁有專屬表演場地（如AKB48劇場），但操作方式較為專業。根據秋元康所說，團體名稱中的「46」象徵「就算人數比AKB48少，也具有不遜於AKB48的幹勁」。</p>
-            <p class="wow fadeInUp text-h6 mb-10">
+            <p class="fade-up text-h6">日本大型女子偶像團體，成立於2011年8月21日；其出道時定位為另一女子偶像團體AKB48的「官方對手」（公式ライバル），但有獨立的幕後團隊，行銷策略及團體風格也與AKB48系列團體不同，惟總製作人同樣是秋元康。目前共有43名成員，其中隊長為秋元真夏、副隊長為梅澤美波。</p>
+            <p class="fade-up text-h6">乃木坂46最初是做為「AKB48官方對手」而成立的女子團體。與AKB48及其姊妹團體（如SKE48等）不同，舉行公演時並不擁有專屬表演場地（如AKB48劇場），但操作方式較為專業。根據秋元康所說，團體名稱中的「46」象徵「就算人數比AKB48少，也具有不遜於AKB48的幹勁」。</p>
+            <p class="fade-up text-h6 mb-10">
               乃木坂46全體成員所屬的經紀公司為「乃木坂46合同會社」（乃木坂46LLC）。附屬於乃木坂46合同會社的「乃木坂46營運委員會」（乃木坂46運営委員会）負責整個團體的營運工作。
             </p>
-            <BtnNormal class="wow fadeInUp" :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
+            <BtnNormal class="fade-up" :content="'Nogizaka46'" :btn-color="'#fff'" :text-color="'#fff'" :text-hover-color="'#000'" :circle-color="'#fff'" :time="'0.3'" />
           </div>
         </v-img>
         <!-- play按鈕 -->
@@ -73,7 +73,7 @@
     <v-container class="mb-10">
       <div class="d-flex justify-space-between" :class="isMobile ? 'flex-column' : ''">
         <!-- 幫每個card動態添加class card+index -->
-        <div v-for="(card,index) in cardData" :key="index" class="wow fadeInUp myCard rounded" :class="`card${index}`" @mouseenter="showCard(`card${index}`)" @mouseleave="closeCard(`card${index}`)" @click="openPage(card.link)">
+        <div v-for="(card,index) in cardData" :key="index" class="fade-up myCard rounded" :class="`card${index}`" @mouseenter="showCard(`card${index}`)" @mouseleave="closeCard(`card${index}`)" @click="openPage(card.link)">
           <v-img class="cardImg" width="100%" height="100%" :src="card.img"></v-img>
           <div :style="{height:'100%'}" class="cardText">
             <div class="title">
@@ -102,7 +102,8 @@
 </template>
 
 <script>
-import { WOW } from 'wowjs'
+// import AOS from 'aos'
+// import { WOW } from 'wowjs'
 // import GSDevTools from "gsap/GSDevTools"
 import BtnNormal from '@/components/base/BtnNormal'
 import PlayCircle from '@/components/PlayCircle'
@@ -141,14 +142,53 @@ export default {
     isMobile() {
       return ['xs', 'sm'].includes(this.$vuetify.breakpoint.name)
     },
+    isNoteBook() {
+      return ['md'].includes(this.$vuetify.breakpoint.name)
+    },
   },
 
   mounted() {
+    console.log('this.$vuetify.breakpoint',this.$vuetify.breakpoint);
+    // aos
+    // AOS.init()
     // wow
-    this.$nextTick(() => {
-      // 可以根據不同需求 創建wow
-      // offset可以直接在tag裡用data-wow-offset設定
-      new WOW({ live: false }).init()
+    // new WOW({ live: false }).init()
+
+    // fadeUp
+    const fadeUps = this.$gsap.utils.toArray('.fade-up')
+    fadeUps.forEach((fadeUp, index) => {
+      this.$gsap.from(fadeUp, {
+        scrollTrigger: {
+          trigger: fadeUp,
+        },
+        y: 100,
+        opacity: 0,
+      })
+    })
+    // fade
+    this.$scrollTrigger.matchMedia({
+      '(min-width: 0px) and (max-width: 959px)': () => {
+        this.$gsap.from('.fade', {
+          scrollTrigger: {
+            trigger: '.fade',
+            start: 'center bottom',
+            markers: true,
+          },
+          opacity: 0,
+          duration: 3,
+        })
+      },
+      '(min-width: 960px) and (max-width: 1319px)': () => {
+        this.$gsap.from('.fade', {
+          scrollTrigger: {
+            trigger: '.fade',
+            start: 'center center+=200',
+            markers: true,
+          },
+          opacity: 0,
+          duration: 3,
+        })
+      },
     })
 
     // video和circle
@@ -401,7 +441,7 @@ export default {
       color: #fff;
       opacity: 0;
       transition: 0.3s;
-      width:80%;
+      width: 80%;
       @media screen and (max-width: '960px') {
         opacity: 1;
       }

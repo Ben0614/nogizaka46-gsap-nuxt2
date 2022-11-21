@@ -2,18 +2,16 @@
   <div class="wrap white--text">
     <!-- section1 -->
     <!-- ,clipPath: 'inset(0)' *現在沒在用 -->
-    <div class="section1" :style="{backgroundColor:'#000',width:'100%',height:'100vh'}">
-      <!-- position: 'fixed',left: '0',top:'0px' *現在沒在用 -->
-      <div :style="{width:'100%',height:'100%',zIndex:0}" class="d-flex align-end">
+      <div :style="{position:'relative',width:'100%',height:'100%',zIndex:0}" class="section1">
         <!-- 背景影片 -->
         <!-- transform:'rotateY(180deg)' *現在沒在用 -->
-        <!-- top:'80px' header高度 *現在沒在用 -->
-        <video ref="bannerVideo" :style="{position:'absolute',width:'100%',top:'0',left:'0',objectFit:'cover'}" src="@/assets/video/2ndAlbum.mp4" autoplay muted loop></video>
+        <!-- objectFit:'cover' 手機版一定要加這個 影片才會100vh高 -->
+        <video ref="bannerVideo" :style="{width:'100%',height:isMobile ? '100vh' : '',objectFit:'cover'}" src="@/assets/video/2ndAlbum.mp4" autoplay muted loop></video>
         <!-- 文字內容 -->
-        <v-container :style="{position:'relative',height:'100%',zIndex:2,marginBottom:'80px'}" class="videoText d-flex justify-space-between align-end">
-          <div>
-            <h1 class="section1Title wow slideInUp mb-10" :class="isMobile ? 'text-h5' : 'text-h1'" data-wow-duration="0.5s">乃木坂46 新メンバー募集開始</h1>
-            <p class="section1Content wow fadeIn" data-wow-delay="0.7s" :class="isMobile ? '' : 'text-h5'">
+        <v-container :style="{position:'absolute',bottom:'85px',left:'0',zIndex:2}" class="d-flex justify-space-between align-end">
+          <div class="videoText">
+            <h1 class="slide-up section1Title mb-10" :class="isMobile ? 'text-h5' : isNoteBook ? 'text-h3' : 'text-h1'">乃木坂46 新メンバー募集開始</h1>
+            <p class="fade section1Content" :class="isMobile ? '' : isNoteBook ? 'text-body-1' : 'text-h5'">
               誰にも言えていない、夢がある？
               <br>
               あの人のどこに、憧れている？
@@ -40,7 +38,7 @@
 
         </v-container>
       </div>
-    </div>
+  
     <!-- section2 -->
     <div class="section2 bg py-10">
       <!-- card -->
@@ -136,7 +134,8 @@
 </template>
 
 <script>
-import { WOW } from 'wowjs'
+// import AOS from 'aos'
+// import { WOW } from 'wowjs'
 import BtnCircle from '@/components/base/BtnCircle'
 export default {
   name: 'Detail',
@@ -210,15 +209,31 @@ export default {
     isMobile() {
       return ['xs', 'sm'].includes(this.$vuetify.breakpoint.name)
     },
+    isNoteBook() {
+      return ['md'].includes(this.$vuetify.breakpoint.name)
+    },
   },
   mounted() {
+    // aos
+    // AOS.init()
     // wow
-    this.$nextTick(() => {
-      // 可以根據不同需求 創建wow
-      // offset可以直接在tag裡用data-wow-offset設定
-      new WOW({ live: false }).init()
+    // new WOW({ live: false }).init()
+
+    // slide-up fade
+    const t = this.$gsap.timeline({
+      scrollTrigger: {
+        trigger: '.videoText',
+        start: 'top bottom',
+        markers: true,
+      },
+      defaults: {
+        opacity: 0,
+      },
     })
-    
+    t.from('.slide-up', {
+      y: 800,
+    }).from('.fade', {})
+
     // 視差
     // section1 影片區 100vh
     this.$scrollTrigger.create({
@@ -268,7 +283,9 @@ export default {
     // 卡片hover和click
     const cards = this.$gsap.utils.toArray('.processCard')
     const cardBtns = this.$gsap.utils.toArray('.processCard .btnCircle')
-    const cardBtnIcons = this.$gsap.utils.toArray('.processCard .btnCircle .v-icon')
+    const cardBtnIcons = this.$gsap.utils.toArray(
+      '.processCard .btnCircle .v-icon'
+    )
     cards.forEach((card, index) => {
       // 點擊就打開側邊欄 並指定tab
       card.addEventListener('click', () => {

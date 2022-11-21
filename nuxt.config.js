@@ -31,8 +31,9 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/scss/_global.scss',
-    '@/assets/css/animate.css',
-    '@/assets/css/hover.css',
+    // '@/assets/css/animate.css',
+    // '@/assets/css/hover.css',
+    // 'aos/dist/aos.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -90,6 +91,14 @@ export default {
           color: '#0F3460',
           grey: '#AEB4BE',
         },
+      },
+    },
+    breakpoint: {
+      thresholds: {
+        xs: 600,
+        sm: 960,
+        md: 1320,
+        lg: 1904,
       },
     },
   },

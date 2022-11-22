@@ -1,7 +1,11 @@
 <template>
   <div ref="header" class="header">
-    <v-container>
-      <v-img :style="{cursor:'pointer'}" width="200px" :src="require('@/assets/images//nogizaka46/Nogizaka46_logo_long.png')" contain @click="goToHome"></v-img>
+    <v-container class="d-flex align-center">
+      <div>
+        <v-img :style="{cursor:'pointer'}" width="200px" :src="require('@/assets/images//nogizaka46/Nogizaka46_logo_long.png')" contain @click="goToPage('index')"></v-img>
+      </div>
+      <h3 :style="{cursor:'pointer'}" class="text-h5 ml-10 purple--text" @click="goToPage('detail')">Join Us</h3>
+      <h3 :style="{cursor:'pointer'}" class="text-h5 ml-10 purple--text" @click="goToPage('kokonihanaimono')">31st</h3>
     </v-container>
   </div>
 </template>
@@ -15,7 +19,7 @@ export default {
 
   computed: {},
   mounted() {
-
+    // 不加progress 一開始header不會顯示
     const showAnim = this.$gsap
       .from(this.$refs.header, {
         yPercent: -100,
@@ -34,8 +38,8 @@ export default {
   },
 
   methods: {
-    goToHome() {
-      this.$router.push({ name: 'index' })
+    goToPage(paegName) {
+      this.$router.push({ name: paegName })
     },
   },
 }
@@ -48,6 +52,8 @@ $z-99: 99;
 .header {
   position: fixed;
   box-shadow: none !important;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 80px !important;
   border-bottom: 2px solid #1e3653;

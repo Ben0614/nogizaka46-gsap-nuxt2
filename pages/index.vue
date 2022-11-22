@@ -148,7 +148,7 @@ export default {
   },
 
   mounted() {
-    console.log('this.$vuetify.breakpoint',this.$vuetify.breakpoint);
+    console.log('window.pageYOffset',window.pageYOffset);
     // aos
     // AOS.init()
     // wow
@@ -172,7 +172,7 @@ export default {
           scrollTrigger: {
             trigger: '.fade',
             start: 'center bottom',
-            markers: true,
+            // markers: true,
           },
           opacity: 0,
           duration: 3,
@@ -183,7 +183,7 @@ export default {
           scrollTrigger: {
             trigger: '.fade',
             start: 'center center+=200',
-            markers: true,
+            // markers: true,
           },
           opacity: 0,
           duration: 3,
@@ -467,7 +467,7 @@ export default {
 }
 .playCirclePosition {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   bottom: -80px;
   right: 100px;
   @media screen and (max-width: '960px') {

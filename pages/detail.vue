@@ -214,6 +214,7 @@ export default {
     },
   },
   mounted() {
+    console.log('window.pageYOffset',window.pageYOffset);
     // aos
     // AOS.init()
     // wow
@@ -224,7 +225,7 @@ export default {
       scrollTrigger: {
         trigger: '.videoText',
         start: 'top bottom',
-        markers: true,
+        // markers: true,
       },
       defaults: {
         opacity: 0,

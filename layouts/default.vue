@@ -5,8 +5,9 @@
     <base-view />
 
     <footer-view />
+    <!-- 鼠標 -->
+    <div class="mice"></div>
     <!-- 滾動進度條 -->
-    <!-- <div class="progress"></div> -->
     <div class="progress" :style="{height:progressHeight+'%'}"></div>
   </v-app>
 </template>
@@ -26,6 +27,13 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleProgress)
+    window.addEventListener('mousemove', (e) => {
+      this.$gsap.to('.mice', {
+        x: e.pageX,
+        y: e.pageY,
+        duration: 0.5,
+      })
+    })
   },
   methods: {
     handleProgress() {
@@ -50,6 +58,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.mice {
+  position: absolute;
+  transform: translate(-50%, -50%); // 讓游標在中間
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(128, 0, 128, 0.5);
+  z-index: 0;
+}
 .progress {
   position: fixed;
   top: 0;

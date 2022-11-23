@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- section-1  -->
-    <div :style="{padding:isMobile ? '80px 50px 50px' : '400px 50px 50px'}" class="white mb-60 d-flex justify-space-between" :class="isMobile ? 'flex-column align-start' : 'align-end'">
+    <div :style="{padding:isMobile ? '80px 50px 50px' : isNoteBook ? '220px 50px 50px' : '400px 50px 50px'}" class="white mb-60 d-flex justify-space-between" :class="isMobile ? 'flex-column align-start' : 'align-end'">
       <h1 class="fade-up font-weight-bold" :class="isMobile ? 'text-h3 mb-3' : 'text-h1'">
         乃木坂46は
         <br>
@@ -12,7 +12,7 @@
 
     <!-- video 伸縮 -->
     <div :style="{position:'relative',margin:'0 0 300px'}" class="d-flex justify-center">
-      <div ref="videoWrap" :style="{position:'relative',width:'95%',borderRadius:'10px',overflow:'hidden'}">
+      <div ref="videoWrap" :style="{position:'relative',width:'95%',borderRadius:'30px',overflow:'hidden'}">
         <!-- 影片區域 -->
         <!-- objectFit:'cover' 對圖片進行剪切，保留原始比例 -->
         <video :style="{width:'100%',height:isMobile ? '100vh' : '100%',objectFit:'cover'}" autoplay muted loop src="@/assets/video/22nd.mp4"></video>

@@ -214,7 +214,8 @@ export default {
     },
   },
   mounted() {
-    console.log('window.pageYOffset',window.pageYOffset);
+    window.scrollTo(0, 0)
+    console.log('Detail window.pageYOffset',window.pageYOffset);
     // aos
     // AOS.init()
     // wow
@@ -270,7 +271,7 @@ export default {
     // })
 
     // 到第二區域btn
-    const section2Top = window.innerHeight + 80 // 80 header高
+    const section2Top = document.querySelector('.section1').offsetHeight + 80  // 80 header高
     const bannerVideoBtn = document.querySelector('.bannerVideoBtn')
     bannerVideoBtn.addEventListener('click', () => {
       this.$gsap.to(window, {

@@ -4,8 +4,8 @@
       <div>
         <v-img :style="{cursor:'pointer'}" width="200px" :src="require('@/assets/images//nogizaka46/Nogizaka46_logo_long.png')" contain @click="goToPage('index')"></v-img>
       </div>
-      <h3 :style="{cursor:'pointer'}" class="text-h5 ml-10 purple--text" @click="goToPage('detail')">Join Us</h3>
-      <h3 :style="{cursor:'pointer'}" class="text-h5 ml-10 purple--text" @click="goToPage('kokonihanaimono')">31st</h3>
+      <h3 :style="{cursor:'pointer'}" class="ml-10 purple--text" :class="isMobile ? '' : ''" @click="goToPage('detail')">Join us</h3>
+      <h3 :style="{cursor:'pointer'}" class="ml-10 purple--text" :class="isMobile ? '' : ''" @click="goToPage('kokonihanaimono')">31st</h3>
     </v-container>
   </div>
 </template>
@@ -17,7 +17,14 @@ export default {
   components: {},
   data: () => ({}),
 
-  computed: {},
+  computed: {
+    isMobile() {
+      return ['xs', 'sm'].includes(this.$vuetify.breakpoint.name)
+    },
+    isNoteBook() {
+      return ['md'].includes(this.$vuetify.breakpoint.name)
+    },
+  },
   mounted() {
     // 不加progress 一開始header不會顯示
     const showAnim = this.$gsap

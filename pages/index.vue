@@ -19,7 +19,7 @@
         <!-- 黑色遮罩 -->
         <div class="video-bg"></div>
         <!-- 文字內容區域 -->
-        <div :style="{position:'absolute',top:isMobile ? '0' : isNoteBook ? '0%' : '15%',left:isMobile ? '0' : isNoteBook ? '10%' : '20%',zIndex:'2',width:'800px',maxWidth:'100%'}" class="white--text mx-auto pa-10">
+        <div :style="{position:'absolute',top:isMobile ? '0' : isNoteBook ? '10%' : '15%',left:isMobile ? '0' : isNoteBook ? '0' : '20%',zIndex:'2',width:'800px',maxWidth:'100%'}" class="white--text mx-auto pa-10">
           <h2 class="fade-up mb-3" :class="isMobile ? 'text-h5' : isNoteBook ? 'text-h4' : 'text-h3'">
             乃木坂46
           </h2>
@@ -148,7 +148,10 @@ export default {
   },
 
   mounted() {
-    console.log('window.pageYOffset',window.pageYOffset);
+    // 如果從其他頁非頂部跳轉 到新頁面的pageYOffset會跟前一頁一樣
+    // 這會造成scrollTrigger start end產生問題
+    window.scrollTo(0, 0)
+    console.log('Home window.pageYOffset',window.pageYOffset);
     // aos
     // AOS.init()
     // wow
@@ -178,7 +181,7 @@ export default {
           duration: 3,
         })
       },
-      '(min-width: 960px) and (max-width: 1319px)': () => {
+      '(min-width: 960px)': () => {
         this.$gsap.from('.fade', {
           scrollTrigger: {
             trigger: '.fade',

@@ -101,7 +101,7 @@ export default {
 }
 
 .closeBtn{
-    position: absolute;
+    position: absolute !important;
     top:30px;
     right:30px
   }

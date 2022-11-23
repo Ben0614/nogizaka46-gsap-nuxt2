@@ -2,43 +2,45 @@
   <div class="wrap white--text">
     <!-- section1 -->
     <!-- ,clipPath: 'inset(0)' *現在沒在用 -->
-      <div :style="{position:'relative',width:'100%',height:'100%',zIndex:0}" class="section1">
-        <!-- 背景影片 -->
-        <!-- transform:'rotateY(180deg)' *現在沒在用 -->
-        <!-- objectFit:'cover' 手機版一定要加這個 影片才會100vh高 -->
-        <video ref="bannerVideo" :style="{width:'100%',height:isMobile ? '100vh' : '',objectFit:'cover'}" src="@/assets/video/2ndAlbum.mp4" autoplay muted loop></video>
-        <!-- 文字內容 -->
-        <v-container :style="{position:'absolute',bottom:'85px',left:'0',zIndex:2}" class="d-flex justify-space-between align-end">
-          <div class="videoText">
-            <h1 class="slide-up section1Title mb-10" :class="isMobile ? 'text-h5' : isNoteBook ? 'text-h3' : 'text-h1'">乃木坂46 新メンバー募集開始</h1>
-            <p class="fade section1Content" :class="isMobile ? '' : isNoteBook ? 'text-body-1' : 'text-h5'">
-              誰にも言えていない、夢がある？
-              <br>
-              あの人のどこに、憧れている？
-              <br>
-              本気で、泣いて笑って、青春してる？
-              <br>
-              背中を押してくれる何かを、待ってる？
-              <br>
-              たった一度の夏、
-              <br>
-              たった一度の、きみへ。
-              <br>
-              乃木坂46 新メンバー募集開始
-              <br>
-              この世界の、未完成は美しい。
-            </p>
-          </div>
-          <!-- gsap控制 -->
-          <BtnCircle :icon-name="'mdi-chevron-down'" :btn-color="'white'" :btn-hover-color="'gray'" :icon-color="'black'" :icon-hover-color="'white'" :time="'0.3'" class="bannerVideoBtn"></BtnCircle>
+    <div :style="{position:'relative',width:'100%',height:'100%',zIndex:0}" class="section1">
+      <!-- 背景影片 -->
+      <!-- transform:'rotateY(180deg)' *現在沒在用 -->
+      <!-- objectFit:'cover' 手機版一定要加這個 影片才會100vh高 -->
+      <video ref="bannerVideo" :style="{width:'100%',height:isMobile ? '100vh' : '',objectFit:'cover'}" src="@/assets/video/2ndAlbum.mp4" autoplay muted loop></video>
+      <!-- 黑色遮罩 -->
+      <div class="video-bg"></div>
+      <!-- 文字內容 -->
+      <v-container :style="{position:'absolute',bottom:'85px',left:'0',zIndex:2}" class="d-flex justify-space-between align-end">
+        <div class="videoText">
+          <h1 class="slide-up section1Title mb-10" :class="isMobile ? 'text-h5' : isNoteBook ? 'text-h3' : 'text-h1'">乃木坂46 新メンバー募集開始</h1>
+          <p class="fade section1Content" :class="isMobile ? '' : isNoteBook ? 'text-body-1' : 'text-h5'">
+            誰にも言えていない、夢がある？
+            <br>
+            あの人のどこに、憧れている？
+            <br>
+            本気で、泣いて笑って、青春してる？
+            <br>
+            背中を押してくれる何かを、待ってる？
+            <br>
+            たった一度の夏、
+            <br>
+            たった一度の、きみへ。
+            <br>
+            乃木坂46 新メンバー募集開始
+            <br>
+            この世界の、未完成は美しい。
+          </p>
+        </div>
+        <!-- gsap控制 -->
+        <BtnCircle :icon-name="'mdi-chevron-down'" :btn-color="'white'" :btn-hover-color="'gray'" :icon-color="'black'" :icon-hover-color="'white'" :time="'0.3'" class="bannerVideoBtn"></BtnCircle>
 
-          <!-- 純js控制 -->
-          <!-- fn-name 點擊後要調用的function name -->
-          <!-- <BtnCircle :icon-name="'mdi-chevron-down'" :btn-color="'white'" :btn-hover-color="'gray'" :icon-color="'black'" :icon-hover-color="'white'" :time="'0.3'" :fn-name="'goToSection2'" @goToSection2="goToSection2"></BtnCircle> -->
+        <!-- 純js控制 -->
+        <!-- fn-name 點擊後要調用的function name -->
+        <!-- <BtnCircle :icon-name="'mdi-chevron-down'" :btn-color="'white'" :btn-hover-color="'gray'" :icon-color="'black'" :icon-hover-color="'white'" :time="'0.3'" :fn-name="'goToSection2'" @goToSection2="goToSection2"></BtnCircle> -->
 
-        </v-container>
-      </div>
-  
+      </v-container>
+    </div>
+
     <!-- section2 -->
     <div class="section2 bg py-10">
       <!-- card -->
@@ -94,7 +96,7 @@
                     <v-btn icon class="expandBtn" x-large>
                       <v-icon :style="{transform: index === activeExpand ? 'rotate(180deg)' : ''}">mdi-chevron-down</v-icon>
                     </v-btn>
-                    <div class="overlay"></div>
+                    <div class="btnOverlay"></div>
                   </div>
                 </div>
               </v-expansion-panel-header>
@@ -215,7 +217,7 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0)
-    console.log('Detail window.pageYOffset',window.pageYOffset);
+    console.log('Detail window.pageYOffset', window.pageYOffset)
     // aos
     // AOS.init()
     // wow
@@ -271,7 +273,7 @@ export default {
     // })
 
     // 到第二區域btn
-    const section2Top = document.querySelector('.section1').offsetHeight + 80  // 80 header高
+    const section2Top = document.querySelector('.section1').offsetHeight + 80 // 80 header高
     const bannerVideoBtn = document.querySelector('.bannerVideoBtn')
     bannerVideoBtn.addEventListener('click', () => {
       this.$gsap.to(window, {
@@ -371,69 +373,19 @@ export default {
 </script>
 
 <style lang="scss">
-.expandArea {
-  position: relative;
-  border-radius: 50%;
-  overflow: hidden;
-
-  &:hover {
-    .expandBtn {
-      background-color: transparent;
-    }
-    .overlay {
-      right: 0;
-    }
-  }
-
-  .expandBtn {
-    position: relative;
-    background-color: rgb(130, 130, 130, 0.3);
-    z-index: 1;
-    transition: 0.3s;
-  }
-
-  .overlay {
-    position: absolute;
-    top: 0;
-    right: -60px;
-    width: 60px;
-    height: 52px;
-    background-image: linear-gradient(to right, black, purple);
-    transition: 0.3s;
-  }
+.bg {
+  background-color: #0e0e0e;
 }
 
-/* width 150% 會造成爆版 這頁最外層用overflow hidden */
-.marquee {
-  width: 150%; // width必須大一點 否則有些字會瞬間消失
-  height: 50px;
-  /* overflow: hidden; */
-}
-.marquee .boxes {
-  position: relative;
-  left: -16.6666%; // 會消除掉的位置
-  height: 50px;
-  @media screen and (max-width: 960px) {
-    left: -33.3333%;
-  }
-}
-.marquee .box {
+.video-bg {
   position: absolute;
-  width: 16.6666%;
-  height: 50px;
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 50px;
-  text-align: center;
-  @media screen and (max-width: 960px) {
-    width: 33.3333%;
-    font-size: 30px;
-  }
-}
-
-/* .section {
+  top: 0;
+  left: 0;
   width: 100%;
-} */
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 0;
+}
 
 .processCard {
   position: relative;
@@ -459,7 +411,64 @@ export default {
   }
 }
 
-.bg {
-  background-color: #0e0e0e;
+/* width 150% 會造成爆版 這頁最外層用overflow hidden */
+.marquee {
+  width: 150%; // width必須大一點 否則有些字會瞬間消失
+  height: 50px;
+  /* overflow: hidden; */
+
+  .boxes {
+    position: relative;
+    left: -16.6666%; // 會消除掉的位置
+    height: 50px;
+    @media screen and (max-width: 960px) {
+      left: -33.3333%;
+    }
+  }
+  .box {
+    position: absolute;
+    width: 16.6666%;
+    height: 50px;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 50px;
+    text-align: center;
+    @media screen and (max-width: 960px) {
+      width: 33.3333%;
+      font-size: 30px;
+    }
+  }
+}
+
+.expandArea {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+
+  &:hover {
+    .expandBtn {
+      background-color: transparent;
+    }
+    .btnOverlay {
+      right: 0;
+    }
+  }
+
+  .expandBtn {
+    position: relative;
+    background-color: rgb(130, 130, 130, 0.3);
+    z-index: 1;
+    transition: 0.3s;
+  }
+
+  .btnOverlay {
+    position: absolute;
+    top: 0;
+    right: -60px;
+    width: 60px;
+    height: 52px;
+    background-image: linear-gradient(to right, black, purple);
+    transition: 0.3s;
+  }
 }
 </style>

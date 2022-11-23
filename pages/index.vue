@@ -408,6 +408,16 @@ export default {
   z-index: 0;
 }
 
+.playCirclePosition {
+  position: absolute;
+  z-index: 2;
+  bottom: -80px;
+  right: 100px;
+  @media screen and (max-width: '960px') {
+    right: 20px;
+  }
+}
+
 .myCard {
   position: relative;
   width: calc(50% - 10px);
@@ -466,15 +476,6 @@ export default {
       bottom: 20px;
       right: 20px;
     }
-  }
-}
-.playCirclePosition {
-  position: absolute;
-  z-index: 2;
-  bottom: -80px;
-  right: 100px;
-  @media screen and (max-width: '960px') {
-    right: 20px;
   }
 }
 </style>

@@ -1,3 +1,21 @@
+<!-- 
+  nuxt版本有衝突會導致這個錯誤 context.outputFileSystem.lstat is not a function
+  確保package.json的nuxt版本和node_modules的nuxt package.json版本一致
+
+  參考網址 https://blog.csdn.net/yushiyue/article/details/129400221
+-->
+<!-- 
+  nuxt 2.15.5 and 2.15.7 可能會有這個錯誤
+  Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-transform-private-property-in-object since the "loose" mode option was set to "true" for @babel/plugin-transform-private-methods. The "loose" option must be the same for @babel/plugin-transform-class-properties, @babel/plugin-transform-private-methods and @babel/plugin-transform-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding ["@babel/plugin-transform-private-property-in-object", { "loose": true }] to the "plugins" section of your Babel config
+
+  解決:
+  1.yarn add -D @babel/plugin-transform-private-property-in-object
+  2.加到nuxt.config
+
+  參考網址
+  https://stackoverflow.com/questions/68663581/latest-nuxt-v2-15-7-install-with-babel-loose-option-warnings
+  https://github.com/nuxt/nuxt/issues/9224
+ -->
 <template>
   <div>
     <!-- section-1  -->
@@ -34,7 +52,7 @@
       </div>
       <!-- play按鈕 -->
       <div class="playCirclePosition">
-        <PlayCircle :dialog-visible="dialogVideo" :youtube-path="'https://www.youtube.com/embed/QaGgbf_VNR4'" @openVideo="openVideo" @dialogClose="closeDialog" />
+        <PlayCircle :dialog-visible="dialogVideo" :youtube-path="'https://www.youtube.com/embed/s1cgEj5JowM'" @openVideo="openVideo" @dialogClose="closeDialog" />
       </div>
     </div>
 
@@ -63,7 +81,7 @@
         </v-img>
         <!-- play按鈕 -->
         <div class="playCirclePosition">
-          <PlayCircle :dialog-visible="dialogVideo2" :youtube-path="'https://www.youtube.com/embed/rUTlSUQCMuo'" @dialogClose="closeDialog" @openVideo="openVideo2" />
+          <PlayCircle :dialog-visible="dialogVideo2" :youtube-path="'https://www.youtube.com/embed/Yy6zMAOgCXc'" @dialogClose="closeDialog" @openVideo="openVideo2" />
         </div>
       </div>
 
@@ -122,9 +140,9 @@ export default {
           title: 'Route246',
           subTitle: '2020/7/24',
           content:
-            '合乃木坂46的第3首數位下載限定歌曲，於2020年7月24日由N46Div.推出。',
+            '乃木坂46的第3首數位下載限定歌曲，於2020年7月24日由N46Div.推出。',
           img: require('@/assets/images/nogizaka46/sub1-3.jpg'),
-          link: 'https://www.youtube.com/watch?v=2J5EQQ9eozE&ab_channel=gba2001',
+          link: 'https://www.youtube.com/watch?v=K79X85nyUp0&ab_channel=%E4%B9%83%E6%9C%A8%E5%9D%8246OFFICIALYouTubeCHANNEL',
         },
         {
           title: '僕は僕を好きになる',

@@ -1,10 +1,10 @@
 # Nogizaka46 - Gsap
 
-![nuxt](https://img.shields.io/badge/nuxt-2.15.7-green)
-![vuetify](https://img.shields.io/badge/vuetify-2.5.5-green)
-![gsap](https://img.shields.io/badge/gsap-3.11.3-green)
+[![nuxt](https://img.shields.io/badge/nuxt-2.15.7-green)](https://github.com/nuxt/nuxt)
+[![vuetify](https://img.shields.io/badge/vuetify-2.5.5-green)](https://github.com/vuetifyjs/vuetify)
+[![gsap](https://img.shields.io/badge/gsap-3.11.3-green)](https://github.com/greensock/GSAP)
 
-Vercel 請點這裡 [Demo](https://nogizaka46-gsap-u55s.vercel.app/)
+展示請點這裡 [Demo](https://nogizaka46-gsap-u55s.vercel.app/)
 
 ## 概述
 

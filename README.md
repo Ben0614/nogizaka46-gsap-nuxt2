@@ -1,8 +1,8 @@
 # Nogizaka46 - Gsap
 
-<img src="https://img.shields.io/badge/nuxt-2.15.7-green">
-<img src="https://img.shields.io/badge/vuetify-2.5.5-green">
-<img src="https://img.shields.io/badge/gsap-3.11.3-green">
+![](https://img.shields.io/badge/nuxt-2.15.7-green)
+![](https://img.shields.io/badge/vuetify-2.5.5-green)
+![](https://img.shields.io/badge/gsap-3.11.3-green)
 
 #### Vercel 請點這裡 [Demo](https://nogizaka46-gsap-u55s.vercel.app/)
 

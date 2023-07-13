@@ -1,10 +1,10 @@
 # Nogizaka46 - Gsap
 
-![](https://img.shields.io/badge/nuxt-2.15.7-green)
-![](https://img.shields.io/badge/vuetify-2.5.5-green)
-![](https://img.shields.io/badge/gsap-3.11.3-green)
+![nuxt](https://img.shields.io/badge/nuxt-2.15.7-green)
+![vuetify](https://img.shields.io/badge/vuetify-2.5.5-green)
+![gsap](https://img.shields.io/badge/gsap-3.11.3-green)
 
-#### Vercel 請點這裡 [Demo](https://nogizaka46-gsap-u55s.vercel.app/)
+Vercel 請點這裡 [Demo](https://nogizaka46-gsap-u55s.vercel.app/)
 
 ## 概述
 
@@ -16,14 +16,17 @@
 ```
 git clone https://github.com/Ben0614/nogizaka46-gsap.git
 ```
+
 2.進入專案目錄
 ```
 cd nogizaka46-gsap
 ```
+
 3.安裝相依套件
 ```
 yarn install
 ```
+
 4.運行
 ```
 yarn dev

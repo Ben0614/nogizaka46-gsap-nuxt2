@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s -Gsap',
+    titleTemplate: '%s -Gsap-Nuxt2',
     title: 'Nogizaka46',
     htmlAttrs: {
       lang: 'en',

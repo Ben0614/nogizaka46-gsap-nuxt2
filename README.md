@@ -1,4 +1,4 @@
-# Nogizaka46-Gsap-Nuxt2
+# Nogizaka46-GSAP-Nuxt2
 
 [![nuxt](https://img.shields.io/badge/nuxt-2.15.7-green)](https://github.com/nuxt/nuxt)
 [![vuetify](https://img.shields.io/badge/vuetify-2.5.5-green)](https://github.com/vuetifyjs/vuetify)

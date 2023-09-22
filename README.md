@@ -4,7 +4,7 @@
 [![vuetify](https://img.shields.io/badge/vuetify-2.5.5-green)](https://github.com/vuetifyjs/vuetify)
 [![gsap](https://img.shields.io/badge/gsap-3.11.3-green)](https://github.com/greensock/GSAP)
 
-展示請點這裡 [Demo](https://nogizaka46-gsap-u55s.vercel.app/)
+展示請點這裡 [Demo](https://nogizaka46-gsap-nuxt2.vercel.app)
 
 ## 概述
 
